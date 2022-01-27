@@ -5,5 +5,10 @@ export const Container = styled.div`
     align-items: center;
     img{
         width: 102px;
+
+    }
+    span{
+        color: white;
+        font-family: Rock Salt;
     }
 `;
