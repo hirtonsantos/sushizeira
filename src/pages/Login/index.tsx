@@ -1,5 +1,6 @@
 import {
   Container,
+  ContainerLogin,
   Title,
   BackgroundImg,
   FormBox,
@@ -46,86 +47,84 @@ const Login = () => {
     signIn(data);
   };
 
-
-
-
   return (
     <Container>
-      <Header />
-      <Title>Login</Title>
-      <BackgroundImg src={BackgroundImage} />
-      <FormBox>
-        <Form onSubmit={handleSubmit(onSubmitFunction)}>
-          <TextField
-            fullWidth
-            required
-            type='email'
-            label='Email'
-            id="email"
-            sx={{
-              backgroundColor: '#4F5066',
-              borderRadius: '15px',
-              fontSize: "2rem",
-              padding: "0px",
-              "&:hover": {
+      <div className="styleHeader">
+        <Header />
+      </div>
+      <ContainerLogin >
+        <Title>Login</Title>
+        <BackgroundImg src={BackgroundImage} />
+        <FormBox>
+          <Form onSubmit={handleSubmit(onSubmitFunction)}>
+            <TextField
+              fullWidth
+              required
+              type="email"
+              label="Email"
+              id="email"
+              sx={{
                 backgroundColor: "#4F5066",
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                color: 'white',
+                borderRadius: "15px",
+                fontSize: "2rem",
+                padding: "0px",
+                "&:hover": {
+                  backgroundColor: "#4F5066",
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  color: "white",
+                  backgroundColor: "#4F5066",
+                  borderRadius: "5px",
+                  padding: "0px 5px ",
+                },
+              }}
+              variant="outlined"
+              {...register("email")}
+            />
+            <Error>
+              {errors.email?.message && <span>{errors.email?.message}</span>}
+            </Error>
+            <TextField
+              fullWidth
+              required
+              type="password"
+              label="Senha"
+              id="password"
+              sx={{
                 backgroundColor: "#4F5066",
-                borderRadius: '5px',
-                padding: '0px 5px ',
-              }
-            }}
-            variant="outlined"
-            {...register("email")}
-          />
-          <Error>
-            {errors.email?.message && <span>{errors.email?.message}</span>}
-          </Error>
-          <TextField
-            fullWidth
-            required
-            type="password"
-            label='Senha'
-            id="password"
-            sx={{
-              backgroundColor: '#4F5066',
-              borderRadius: '15px',
-              fontSize: "2rem",
-              "&:hover": {
-                backgroundColor: "#4F5066",
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                color: 'white',
-                backgroundColor: "#4F5066",
-                borderRadius: '5px',
-                padding: '0px 5px ',
-              }
-            }}
-            variant="outlined"
-            {...register("password")}
-          />
-          <Error>
-            {errors.email?.message && <span>{errors.password?.message}</span>}
-          </Error>
+                borderRadius: "15px",
+                fontSize: "2rem",
+                "&:hover": {
+                  backgroundColor: "#4F5066",
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  color: "white",
+                  backgroundColor: "#4F5066",
+                  borderRadius: "5px",
+                  padding: "0px 5px ",
+                },
+              }}
+              variant="outlined"
+              {...register("password")}
+            />
+            <Error>
+              {errors.email?.message && <span>{errors.password?.message}</span>}
+            </Error>
 
-          <ButtonSignIn>
-            <ButtonComponent text={"Entrar"} color="true"></ButtonComponent>
-          </ButtonSignIn>
+            <ButtonSignIn>
+              <ButtonComponent text={"Entrar"} color="true"></ButtonComponent>
+            </ButtonSignIn>
 
-          
-          <ButtonSignUp type="submit" onClick={() => history.push("/signup")}>
-            Cadastre-se
-          </ButtonSignUp>
-                      
-          
-        </Form>
-      </FormBox>
+            <ButtonSignUp type="submit" onClick={() => history.push("/signup")}>
+              Cadastre-se
+            </ButtonSignUp>
+          </Form>
+        </FormBox>
+      </ContainerLogin >
     </Container>
   );
 };

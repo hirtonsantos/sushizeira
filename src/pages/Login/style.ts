@@ -2,15 +2,27 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   background: #000;
+  
+  height: 100vh;
+  /* @media (min-width: 1000px) { */
+    /* flex-direction: column; */
+    /* padding: 0px; */
+  /* } */
+  .styleHeader{
+    
+    padding: 20px 10px 0px 10px;
+    
+  }
+`;
+
+export const ContainerLogin = styled.div`
   display: flex;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
-  @media (min-width: 1000px) {
-    flex-direction: column;
-    justify-content: center;
-    padding: 0px;
-  }
+  width: 100%;
+  /* height: 100%; */
+  box-sizing: border-box;
 `;
 
 export const Title = styled.div`
@@ -21,12 +33,12 @@ export const Title = styled.div`
 `;
 
 export const BackgroundImg = styled.img`
-  width: 80%;
+  width: 100%;
   @media (min-width: 1000px) {
-    width: 30%;
+    width: 100%;
     flex-direction: column;
     justify-content: center;
-    padding: 0px;
+    padding: 50px;
   }
 `;
 

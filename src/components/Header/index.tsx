@@ -1,14 +1,14 @@
-import { Container, BoxLogo, TitleLogo, ImgLogo } from "./style";
-import ImageLogo from "../../assets/sushiLogo.png";
+import logo from "../../assets/logo.svg"
+import {Container} from "./style"
 
-function Header() {
-  return (
-    <Container>
-      <BoxLogo>
-        <ImgLogo src={ImageLogo} />
-        <TitleLogo>Sushizeira</TitleLogo>
-      </BoxLogo>
-    </Container>
-  );
+function Header({}) {
+    return(
+        <Container>
+            <img src={logo} alt="" />
+            <span>Sushizeira</span>
+        </Container>
+
+    )
 }
+
 export default Header;
