@@ -1,7 +1,7 @@
-import { ProductsPage } from "../../components-testezin/OwnerDashboard/ProductsPage";
-import { RequestsPage } from "../../components-testezin/OwnerDashboard/RequestsPage";
 import { Route, Switch } from "react-router-dom";
-import { HistoricPage } from "../../components-testezin/OwnerDashboard/HistoryPage";
+import { HistoricPage } from "../../components/OwnerDashboard/HistoryPage";
+import { ProductsPage } from "../../components/OwnerDashboard/ProductsPage";
+import { RequestsPage } from "../../components/OwnerDashboard/RequestsPage";
 
 export const OwnerDashboard = () => {
   return (

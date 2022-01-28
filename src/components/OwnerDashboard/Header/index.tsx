@@ -1,7 +1,7 @@
 import { Box, BoxUser, Container, ContainerBox, ContainerConfig, Content, ContentCategory, ContentConfig } from "./style"
-import Logo from "../../../assets/Logo.svg"
+import Logo from "../../../assets/dashboardOwner/Logo.svg"
 import { TiThMenu } from "react-icons/ti"
-import UserAvatar from "../../../assets/User-Avatar.svg"
+import UserAvatar from "../../../assets/dashboardOwner/User-Avatar.svg"
 import { useState } from "react"
 import { useHistory } from "react-router-dom"
 
