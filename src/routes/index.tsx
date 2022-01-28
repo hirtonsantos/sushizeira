@@ -19,6 +19,7 @@ export const Routes = () => {
     <Switch>
       <Route exact path="/" component={Login} />
       <Route exact path="/signup" component={Signup} />
+      <Route exact path="/menu" component={Menu} isPrivate></Route>
       <Route exact path="/menu" component={Menu}></Route>
     </Switch>
   );

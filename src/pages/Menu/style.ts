@@ -18,10 +18,11 @@ export const Product = styled.div`
   }
   &::-webkit-scrollbar-track {
     background: grey;
+    border-radius: 20px;
   }
   &::-webkit-scrollbar-thumb {
     background-color: #04000586;
-    border-radius: 0px 20px 20px 0px;
+    border-radius: 20px;
   }
 `;
 
@@ -39,6 +40,15 @@ export const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items:center;
+`;
+
+export const UserContainer = styled.div`
+  svg{
+    margin: 0px 10px;
+    width: 30px;
+    height: 30px;
+    color: #fff;
+  }
 `;
 
 export const ButtonsMenuOff = styled.div`

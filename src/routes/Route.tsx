@@ -26,7 +26,7 @@ export const Route = ({
         isPrivate === !!accessToken ? (
           <Component />
         ) : (
-          <Redirect to={isPrivate ? "/" : "/dashboard"} />
+          <Redirect to={isPrivate ? "/" : "/menu"} />
         )
       }
     />
