@@ -1,16 +1,20 @@
 import styled from "styled-components";
-import ButtonComponent from "../../components/Button";
 
 export const Container = styled.div`
   height: 100vh;
+  background: #000000;
+  .styleHeader {
+    padding: 20px 10px 0px 10px;
+  }
+`;
+
+export const ContainerLogin = styled.div`
   display: flex;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
-  /* padding: 20px 0px 0px 0px; */
-  background: #000000;
-  @media (min-width: 800px) {
-    justify-content: center;
-  }
+  width: 100%;
+  box-sizing: border-box;
 `;
 
 export const Title = styled.div`
@@ -21,7 +25,7 @@ export const Title = styled.div`
 `;
 
 export const BackgroundImg = styled.img`
-  width: 30rem;
+  width: 100%;
   @media (min-width: 1000px) {
     margin-top: 20px;
     flex-direction: column;
@@ -43,15 +47,13 @@ export const FormBox = styled.div`
 
 export const Form = styled.form`
   display: flex;
-  background: #000000;
   flex-direction: column;
   padding: 20px 19px 26px 19px;
   box-sizing: border-box;
   margin-top: 20px;
   width: 100%;
+  background: #000000;
   @media (min-width: 800px) {
-    /* width: 800px; */
-    /* align-items: center */
   }
 `;
 
@@ -59,9 +61,6 @@ export const Box1 = styled.div`
   @media (min-width: 800px) {
     display: flex;
     flex-direction: row;
-
-    margin-bottom: 20px;
-
     justify-content: space-between;
     align-content: space-between;
     align-items: stretch;
@@ -72,8 +71,6 @@ export const Box1A = styled.div`
   @media (min-width: 800px) {
     display: flex;
     flex-direction: column;
-    /* background: #760921; */
-    /* width: 100%  ; */
     width: 370px;
   }
 `;
@@ -82,8 +79,10 @@ export const Box2 = styled.div`
   @media (min-width: 800px) {
     display: flex;
     flex-direction: row;
-    padding-left: 5px;
-    width: 100%;
+    margin-bottom: 20px;
+    justify-content: space-between;
+    align-content: space-between;
+    align-items: stretch;
   }
 `;
 
@@ -91,40 +90,48 @@ export const Box2A = styled.div`
   @media (min-width: 800px) {
     display: flex;
     flex-direction: column;
-    /* background: #760921; */
-    /* width: 100%  ; */
     width: 370px;
   }
 `;
 
 export const Error = styled.ul`
-  text-align: start;
+  padding: 5px 0px 0px 5px;
   margin-bottom: 15px;
+  text-align: start;
   font-size: 12px;
   font-family: "Ubuntu", sans-serif;
   color: #f40000;
-  padding: 5px 0px 0px 5px;
 `;
 
 export const ButtonSignUp = styled.div`
+  justify-content: center;
+  align-items: center;
   width: 100%;
+  @media (min-width: 800px) {
+    margin-top: 10px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
+export const ButtonSignUpSize = styled.div`
   height: 50px;
   @media (min-width: 800px) {
-    margin-top: 20px;
     width: 50%;
+    justify-content: center;
   }
 `;
 
 export const ButtonSignIn = styled.button`
-  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
   font-size: 20px;
   width: 100%;
-  height: 10px;
   color: #ffffff;
   background: #000000;
   border: 0px;
-`;
-
-export const ButtonStyled01 = styled(ButtonComponent)`
-  font-size: 90px;
+  cursor: pointer;
 `;
