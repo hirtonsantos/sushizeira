@@ -1,17 +1,10 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background: #000;
-  
   height: 100vh;
-  /* @media (min-width: 1000px) { */
-    /* flex-direction: column; */
-    /* padding: 0px; */
-  /* } */
+  background: #000;
   .styleHeader{
-    
     padding: 20px 10px 0px 10px;
-    
   }
 `;
 
@@ -21,7 +14,6 @@ export const ContainerLogin = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  /* height: 100%; */
   box-sizing: border-box;
 `;
 
@@ -35,10 +27,8 @@ export const Title = styled.div`
 export const BackgroundImg = styled.img`
   width: 100%;
   @media (min-width: 1000px) {
-    width: 100%;
+    margin-top: 20px;
     flex-direction: column;
-    justify-content: center;
-    padding: 50px;
   }
 `;
 
@@ -87,9 +77,13 @@ export const ButtonSignIn = styled.div`
 `;
 
 export const ButtonSignUp = styled.button`
-  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  font-size: 20px;
   width: 100%;
   color: #ffffff;
   background: #000000;
   border: 0px;
+  cursor: pointer;
 `;
