@@ -9,10 +9,21 @@ const fadeOut = keyframes`
 from{opacity:1;}
 to{opacity:0;}
 `;
+const comeLeft = keyframes`
+from{transform:translateX(1000px)}
+to{transform:translateX(0)}
+`;
+
+const comeTop = keyframes`
+from{transform:translateY(-500px)}
+to{transform:translateY(0)}
+`;
 
 export const Container = styled.main`
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   background-image: url(${bg});
   background-position-x: right;
   background-repeat: no-repeat;
@@ -23,6 +34,7 @@ export const Container = styled.main`
   @media (min-width: 1000px) {
     display: flex;
     flex-direction: row;
+    justify-content: normal;
     background-image: url(${bg});
     background-position: center center;
     background-repeat: no-repeat;
@@ -38,6 +50,10 @@ export const Header = styled.header`
     display: flex;
     align-items: center;
     font-size: 24px;
+    margin-top: 10px;
+  }
+  a {
+    display: none;
   }
   @media (min-width: 1000px) {
     display: flex;
@@ -52,11 +68,10 @@ export const Header = styled.header`
       width: 100%;
     }
     .logo {
-      display: flex;
-      align-items: center;
-      font-size: 24px;
+      margin-top: 0;
     }
     a {
+      display: flex;
       background: none;
       border: none;
       color: white;
@@ -66,12 +81,44 @@ export const Header = styled.header`
         color: red;
       }
     }
+    .header a:nth-of-type(1n) {
+      animation: ${comeTop} 1s;
+    }
+    .header a:nth-of-type(2n) {
+      animation: ${comeTop} 1.5s;
+    }
+    .header a:nth-of-type(3n) {
+      animation: ${comeTop} 2s;
+    }
   }
 `;
 
 export const Info = styled.div`
+  height: 40vh;
+  width: 50vw;
+  background-color: rgba(0, 0, 0, 70%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-self: flex-end;
+  font-size: 16px;
+  padding: 0 15px;
+  margin: 0 50px 60px 0;
+  .mobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+  }
+  .desktop {
+    display: none;
+  }
+
+  .contact {
+    display: none;
+  }
   @media (min-width: 1000px) {
-    width: 20vw;
+    width: 25vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 70%);
     display: flex;
@@ -79,14 +126,29 @@ export const Info = styled.div`
     justify-content: space-around;
     font-size: 26px;
     padding: 0 15px;
+    margin: 0;
+    animation: ${comeLeft} 1s;
+    .mobile {
+      display: none;
+    }
+    .desktop {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      height: 100%;
+      animation: ${fadeIn} 2.5s;
+    }
     .redLetter {
       color: red;
     }
     .right {
       align-self: flex-end;
+      animation: ${fadeIn} 4.5s;
     }
     .contact {
+      display: block;
       font-size: 15px;
+      animation: ${fadeIn} 6.5s;
     }
     h3 {
       font-size: 30px;
