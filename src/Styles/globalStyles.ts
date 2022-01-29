@@ -44,6 +44,9 @@ const GlobalStyle = createGlobalStyle`
 		border-collapse: collapse;
 		border-spacing: 0;
 	}
+	:root{
+		--colorteste: #27AE60
+	}
 `;
  
 export default GlobalStyle;

@@ -7,6 +7,7 @@ import {
 } from "react";
 
 import { api } from "../../services/api";
+import toast, { Toaster } from 'react-hot-toast';
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -49,8 +50,8 @@ const useAuth = () => {
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
   const [data, setData] = useState<AuthState>(() => {
-    const accessToken = localStorage.getItem("@Hamburgueria:accessToken");
-    const user = localStorage.getItem("@Hamburgueria:user");
+    const accessToken = localStorage.getItem("@sushizeira:accessToken");
+    const user = localStorage.getItem("@sushizeira:user");
 
     if (accessToken && user) {
       return { accessToken, user: JSON.parse(user) };
@@ -63,15 +64,18 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     const response = await api.post("/login", { email, password });
     const { accessToken, user } = response.data;
 
-    localStorage.setItem("@Hamburgueria:accessToken", accessToken);
-    localStorage.setItem("@Hamburgueria:user", JSON.stringify(user));
+    toast.success('Login efetuado com sucesso!',{
+      duration: 5000}) 
+
+    localStorage.setItem("@sushizeira:accessToken", accessToken);
+    localStorage.setItem("@sushizeira:user", JSON.stringify(user));
 
     setData({ accessToken, user });
   }, []);
 
   const signOut = useCallback(() => {
-    localStorage.removeItem("@Hamburgueria:accessToken");
-    localStorage.removeItem("@Hamburgueria:user");
+    localStorage.removeItem("@sushizeira:accessToken");
+    localStorage.removeItem("@sushizeira:user");
 
     setData({} as AuthState);
   }, []);
@@ -85,6 +89,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
         signOut,
       }}
     >
+      <div><Toaster/></div>
       {children}
     </AuthContext.Provider>
   );
