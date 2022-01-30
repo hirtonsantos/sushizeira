@@ -37,7 +37,6 @@ function Cart({}) {
         deleteAll()
     }
 
-    console.log(cart)
     return(
         <Container>
         <HeaderContainer>
