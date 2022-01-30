@@ -8,6 +8,7 @@ import {
 
 import { api } from "../../services/api";
 import toast, { Toaster } from 'react-hot-toast';
+import { Redirect, useHistory } from "react-router-dom";
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -15,8 +16,10 @@ interface AuthProviderProps {
 
 interface User {
   email: string;
-  id: string;
+  id: number;
   name: string;
+  address: string;
+  admin: boolean;
 }
 
 interface AuthState {
@@ -49,6 +52,7 @@ const useAuth = () => {
 };
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
+  const history = useHistory();
   const [data, setData] = useState<AuthState>(() => {
     const accessToken = localStorage.getItem("@sushizeira:accessToken");
     const user = localStorage.getItem("@sushizeira:user");
@@ -64,9 +68,9 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   const signIn = useCallback(async ({ email, password }: SignInCredentials) => {
     const response = await api.post("/login", { email, password });
     const { accessToken, user } = response.data;
-
     toast.success('Login efetuado com sucesso!',{
       duration: 5000}) 
+    
 
     localStorage.setItem("@sushizeira:accessToken", accessToken);
     localStorage.setItem("@sushizeira:user", JSON.stringify(user));

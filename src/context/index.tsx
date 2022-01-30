@@ -3,6 +3,7 @@ import { AuthProvider } from "./Auth/AuthContext";
 import { CartProvider } from "./Cart/CartContext";
 import { OwnerProvider } from "./Owner/ownerContext";
 import { ProductProvider } from "./Product/ProductContext";
+import { RequestProvider } from "./Request/RequestContext";
 
 
 interface AppProviderProps {
@@ -12,12 +13,14 @@ interface AppProviderProps {
 export const AppProvider = ({ children }: AppProviderProps) => (
   
   <AuthProvider>
-    {/* <CartProvider> */}
-      <ProductProvider>
-        <OwnerProvider>
-        {children}
-        </OwnerProvider>
-      </ProductProvider>
-    {/* </CartProvider> */}
+    <ProductProvider>
+      <CartProvider>
+        <RequestProvider>
+          <OwnerProvider>
+            {children}
+          </OwnerProvider>
+        </RequestProvider>
+      </CartProvider>
+    </ProductProvider>
   </AuthProvider>
 );

@@ -10,7 +10,7 @@ interface RequestProps {
   ishow?:boolean;
 }
 
-export const RequestsPage = (ishow: RequestProps, ison: RequestProps) => {
+export const RequestsPage = ({}) => {
 
   const [isOn, setIsOn] = useState(false)
 

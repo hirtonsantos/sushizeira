@@ -11,7 +11,7 @@ interface ProductsProps {
   ishow?:boolean;
 }
 
-export const ProductsPage = (ison: ProductsProps, ishow: ProductsProps) => {
+export const ProductsPage = ({}) => {
 
   const [isOn, setIsOn] = useState(false)
   const { product } = useProduct();
