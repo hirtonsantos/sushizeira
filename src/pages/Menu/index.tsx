@@ -4,10 +4,13 @@ import Header from "../../components/Header";
 import PopupWarning from "../../components/PopupWarning";
 import { useAuth } from "../../context/Auth/AuthContext";
 import { useProduct } from "../../context/Product/ProductContext";
-import { Container, Product, ProductCarousel, Title, UserContainer, ButtonsMenuOff, HeaderContainer } from "./style";
+import { Container, Product, ProductCarousel, Title, UserContainer, ButtonsMenuOff, HeaderContainer, MyOrder, IconsH } from "./style";
 import {GiShoppingCart} from "react-icons/gi";
 import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
+import { Link, useHistory } from "react-router-dom";
+import { FaSignOutAlt } from "react-icons/fa";
+import { useCart } from "../../context/Cart/CartContext";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -21,8 +24,10 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 function Menu() {
     const {product} = useProduct()
-    const {accessToken, user} = useAuth();
+    const {accessToken, user, signOut} = useAuth();
     const [popupWarning, setPopupWarning] = useState(false);
+    const {cart} = useCart();
+    const history = useHistory();
 
     const activePopupWarning = () =>{
       setPopupWarning(!popupWarning)
@@ -39,15 +44,22 @@ function Menu() {
           {
             accessToken ? 
             <UserContainer>
-              <span>Olá, {user.name}</span>
-              <StyledBadge badgeContent={2} color="secondary">
-                  <GiShoppingCart/>
-              </StyledBadge>
+              <MyOrder>
+                    <span>Olá, {user.name}</span>
+                    <Link to={"/request"}>Meus Pedidos</Link>
+                </MyOrder>
+             
+                <IconsH>
+                    <StyledBadge badgeContent={cart.length} color="secondary">
+                        <GiShoppingCart onClick={() => history.push("/cart")}/>
+                    </StyledBadge>
+                    <FaSignOutAlt onClick={signOut}/>
+                </IconsH>
             </UserContainer> 
             : 
             <ButtonsMenuOff>
-              <button className="btn-login">Entrar</button>
-              <button>Cadastrar</button>
+              <button className="btn-login" onClick={() => history.push("/")}>Entrar</button>
+              <button onClick={() => history.push("/signup")}>Cadastrar</button>
             </ButtonsMenuOff>
           }
         </HeaderContainer>
@@ -60,7 +72,7 @@ function Menu() {
               <Product>
                 {
                   product.filter((item) => item.category === "pecas").map((itemCard)=>(
-                    <CardProductMenu activePopupWarning={activePopupWarning} img={itemCard.img} textTitle={itemCard.name} price={itemCard.price}/> 
+                    <CardProductMenu key={itemCard.id} activePopupWarning={activePopupWarning} product={itemCard}/> 
                   ))
                 }
               </Product>
@@ -70,7 +82,7 @@ function Menu() {
               <Product>
                 {
                   product.filter((item) => item.category === "temaki").map((itemCard)=>(
-                    <CardProductMenu activePopupWarning={activePopupWarning} img={itemCard.img} textTitle={itemCard.name} price={itemCard.price}/> 
+                    <CardProductMenu key={itemCard.id} activePopupWarning={activePopupWarning} product={itemCard}/> 
                   ))
                 }
               </Product>
@@ -80,7 +92,7 @@ function Menu() {
               <Product>
                 {
                   product.filter((item) => item.category === "combinados").map((itemCard)=>(
-                    <CardProductMenu activePopupWarning={activePopupWarning} img={itemCard.img} textTitle={itemCard.name} price={itemCard.price}/> 
+                    <CardProductMenu key={itemCard.id} activePopupWarning={activePopupWarning} product={itemCard}/> 
                   ))
                 }
               </Product>
@@ -90,7 +102,7 @@ function Menu() {
               <Product>
                 {
                   product.filter((item) => item.category === "bebida").map((itemCard)=>(
-                    <CardProductMenu activePopupWarning={activePopupWarning} img={itemCard.img} textTitle={itemCard.name} price={itemCard.price}/> 
+                    <CardProductMenu key={itemCard.id} activePopupWarning={activePopupWarning} product={itemCard}/> 
                   ))
                 }
               </Product>

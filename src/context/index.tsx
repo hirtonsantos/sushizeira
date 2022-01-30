@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { AuthProvider } from "./Auth/AuthContext";
 import { CartProvider } from "./Cart/CartContext";
 import { ProductProvider } from "./Product/ProductContext";
+import { RequestProvider } from "./Request/RequestContext";
 
 
 interface AppProviderProps {
@@ -11,10 +12,12 @@ interface AppProviderProps {
 export const AppProvider = ({ children }: AppProviderProps) => (
   
   <AuthProvider>
-    <CartProvider>
-      <ProductProvider>
-        {children}
-      </ProductProvider>
-    </CartProvider>
+    <ProductProvider>
+      <CartProvider>
+        <RequestProvider>
+          {children}
+        </RequestProvider>
+      </CartProvider>
+    </ProductProvider>
   </AuthProvider>
 );

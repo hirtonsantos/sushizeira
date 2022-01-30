@@ -1,31 +1,33 @@
 import { createContext, useContext, useState, ReactNode, useEffect } from "react";
 import { api } from "../../services/api";
 import { useAuth } from "../Auth/AuthContext";
+import { v4 as uuid } from 'uuid';
 
 interface CartProvidersProps {
     children: ReactNode;
 }
 
 interface Product {
-    id: number;
-    name: string;
-    category: string;
-    price: number;
-    img: string;
+  id: number;
+  name: string;
+  category: string;
+  price: number;
+  img: string;
+  description?: string;
+  quantityStock: number;
 }
 interface Cart{
-    id: number;
-    name: string;
-    category: string;
-    price: number;
-    img: string;
-    quantidade:number;
-    userId: number;
+  id: string;
+  name: string;
+  category: string;
+  price: number;
+  img: string;
+  description?: string;
+  quantityStock: number;
+  quantidade:number;
+  userId: number;
 }
 
-interface Carts{
-  item: Cart[];
-}
 
 interface CartProviderData {
   // cart é um array de produtos
@@ -50,7 +52,7 @@ export const CartProvider = ({ children }: CartProvidersProps) => {
 
   const addProduct = (product: Product) => {
     if(cart.filter((item)=>item.name===product.name).length === 0){
-      const cartSend = {...{category:product.category, img:product.img, name:product.name, price:product.price}, ...{quantidade:1, userId:user.id}}
+      const cartSend = {...{category:product.category, img:product.img, name:product.name, price:product.price, description:product.description, quantityStock: product.quantityStock}, ...{quantidade:1, userId:user.id, id:uuid()}}
       api
       .post("/cart", cartSend, {
         headers: {
@@ -58,6 +60,9 @@ export const CartProvider = ({ children }: CartProvidersProps) => {
         },
       })
       .then((_) => setRefresh(!refresh))
+  }else{
+    const cardSend = cart.find((item)=>item.name===product.name) || cart[0];
+    addQuantidade(cardSend)
   }
   };
 
@@ -65,7 +70,7 @@ export const CartProvider = ({ children }: CartProvidersProps) => {
     product.quantidade = product.quantidade+1;
     const cardSend = {...product}
     api
-    .patch(`/cart/${product.id}`, cardSend, {
+    .patch(`/cart/${cardSend.id}`, cardSend, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -73,9 +78,10 @@ export const CartProvider = ({ children }: CartProvidersProps) => {
     .then((_) => {
       setRefresh(!refresh)
     })
+    .catch((err) => console.log(err))
   };
+
   const subQuantidade = (product: Cart) => {
-    console.log(product)
     if(product.quantidade > 1){
       product.quantidade = product.quantidade-1;
     const cartSend = {...product}

@@ -8,7 +8,16 @@ export const Container = styled.div`
 
     }
     span{
+        display: none;
         color: white;
         font-family: Rock Salt;
+    }
+    @media(min-width: 500px){
+        span{
+            display: block;
+        }
+    }
+    &:hover{
+        cursor: pointer;
     }
 `;
