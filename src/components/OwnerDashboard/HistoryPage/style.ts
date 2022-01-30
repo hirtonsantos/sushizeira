@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+interface SelectBoxProps {
+    ison?: boolean;
+    ishow?: boolean;
+}
+
 export const Box = styled.div`
     align-items: center;
     display: flex;
@@ -27,11 +32,12 @@ export const DataContent = styled.div`
     }
 `
 
-export const Content = styled.div`
+export const Content = styled.div<SelectBoxProps>`
     ${Box}:nth-last-child(1) {
         border-right: none;
     } 
     background: #000000;
+    display: ${(props) => (props.ishow ? "none" : "flex")};
     color: white;
     font-weight: bold;
     width: 100%;
@@ -54,5 +60,17 @@ export const BoxConteiner = styled.div`
     @media(max-width: 514px){
         ${Box}:first-child {
             display: none;
+    }
+`
+
+export const BoxNotHistoric = styled.div<SelectBoxProps>`
+    height: 73vh;
+    display: ${(props) => (props.ishow ? "none" : "flex")};
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    span {
+        color: blue;
+        font-family: 'Rock Salt';
     }
 `

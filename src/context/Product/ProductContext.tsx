@@ -13,9 +13,8 @@ interface Product {
     category: string;
     price: number;
     img: string;
+    quantityStock: string;
 }
-
-
 
 interface ProductProviderData {
   product: Product[];

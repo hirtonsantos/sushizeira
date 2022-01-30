@@ -4,6 +4,7 @@ import { TiThMenu } from "react-icons/ti"
 import UserAvatar from "../../../assets/dashboardOwner/User-Avatar.svg"
 import { useState } from "react"
 import { useHistory } from "react-router-dom"
+import { useOwner } from "../../../context/Owner/ownerContext"
 
 interface HeaderProps {
     openMenu?: boolean;
@@ -12,9 +13,11 @@ interface HeaderProps {
 export const Header = ({openMenu}: HeaderProps) => {
 
     const [isOpen, setIsOpen] = useState<boolean>(false)
+    const { showIsOn } = useOwner()
 
     const OpenMenu = () => {
         setIsOpen(!isOpen)
+        showIsOn()
     }
 
     const history = useHistory()

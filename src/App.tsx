@@ -1,9 +1,10 @@
 import React from 'react';
-import { Routes } from './routes';
+import { OwnerDashboard } from './pages/OwnerDashboard';
+// import { Route } from './routes/Route';
 
 function App() {
   return (
-   <Routes></Routes>
+   <OwnerDashboard />
   );
 }
 
