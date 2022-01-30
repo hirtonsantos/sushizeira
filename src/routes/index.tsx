@@ -6,9 +6,7 @@ import Signup from "../pages/Signup";
 import Menu from "../pages/Menu";
 import Cart from "../pages/Cart";
 import RequestUser from "../pages/RequestUser";
-
-
-
+import { OwnerDashboard } from "../pages/OwnerDashboard";
 
 /*import { PageNotFound } from "../pages/PageNotFound";
 import { Dashboard } from "../pages/Dashboard";
@@ -24,10 +22,10 @@ export const Routes = () => {
       <Route exact path="/menu" component={Menu} isPrivate={accessToken ? true : false}></Route>
       <Route exact path="/cart" component={Cart} isPrivate></Route>
       <Route exact path="/request" component={RequestUser} isPrivate></Route>
+      <Route path="/dashboardOwner" component={OwnerDashboard} />
     </Switch>
   );
 };
-
 
 /*
 <Route path="/signup" component={Signup} />
