@@ -4,8 +4,19 @@ import Header from "../../components/Header";
 import PopupWarning from "../../components/PopupWarning";
 import { useAuth } from "../../context/Auth/AuthContext";
 import { useProduct } from "../../context/Product/ProductContext";
-import { Container, Product, ProductCarousel, Title, ButtonsMenuOff, HeaderContainer } from "./style";
+import { Container, Product, ProductCarousel, Title, UserContainer, ButtonsMenuOff, HeaderContainer } from "./style";
+import {GiShoppingCart} from "react-icons/gi";
+import Badge from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
 
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    border: `2px solid red`,
+    padding: '0 2px',
+    background: "red",
+    marginRight: "10px"
+  },
+}));
 
 
 function Menu() {
@@ -27,7 +38,12 @@ function Menu() {
           <Header></Header>
           {
             accessToken ? 
-            <div></div> 
+            <UserContainer>
+              <span>Olá, {user.name}</span>
+              <StyledBadge badgeContent={2} color="secondary">
+                  <GiShoppingCart/>
+              </StyledBadge>
+            </UserContainer> 
             : 
             <ButtonsMenuOff>
               <button className="btn-login">Entrar</button>
