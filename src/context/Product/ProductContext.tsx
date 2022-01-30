@@ -13,6 +13,8 @@ interface Product {
     category: string;
     price: number;
     img: string;
+    description?: string;
+    quantityStock: number;
 }
 
 

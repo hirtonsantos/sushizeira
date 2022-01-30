@@ -2,12 +2,14 @@ import logo from "../../assets/logo.svg"
 import { ButtonsMenuOff } from "./style";
 import {Div, DivA, DivContainer} from "./style"
 import {FaWindowClose} from "react-icons/fa"
+import { useHistory } from "react-router-dom";
 
 interface PopupWarningProps{
     activePopupWarning: () => void;
 }
 
 function PopupWarning({activePopupWarning}:PopupWarningProps) {
+    const history = useHistory();
     return(
         <DivA>
             <DivContainer>
@@ -17,8 +19,8 @@ function PopupWarning({activePopupWarning}:PopupWarningProps) {
                             Entre para comprar!
                         </span>
                     <ButtonsMenuOff>
-                        <button className="btn-login">Entrar</button>
-                        <button>Cadastrar</button>
+                        <button className="btn-login" onClick={() => history.push("/")}>Entrar</button>
+                        <button onClick={() => history.push("/signup")}>Cadastrar</button>
                     </ButtonsMenuOff>
                 </Div>
             </DivContainer>

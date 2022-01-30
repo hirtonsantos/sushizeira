@@ -4,6 +4,8 @@ import { Route } from "./Route";
 import { useAuth } from "../context/Auth/AuthContext";
 import Signup from "../pages/Signup";
 import Menu from "../pages/Menu";
+import Cart from "../pages/Cart";
+import RequestUser from "../pages/RequestUser";
 
 
 
@@ -19,8 +21,9 @@ export const Routes = () => {
     <Switch>
       <Route exact path="/" component={Login} />
       <Route exact path="/signup" component={Signup} />
-      <Route exact path="/menu" component={Menu} isPrivate></Route>
-      <Route exact path="/menu" component={Menu}></Route>
+      <Route exact path="/menu" component={Menu} isPrivate={accessToken ? true : false}></Route>
+      <Route exact path="/cart" component={Cart} isPrivate></Route>
+      <Route exact path="/request" component={RequestUser} isPrivate></Route>
     </Switch>
   );
 };

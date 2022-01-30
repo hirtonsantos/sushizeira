@@ -42,6 +42,25 @@ export const HeaderContainer = styled.div`
   align-items:center;
 `;
 
+export const MyOrder = styled.div`
+  display: flex;
+  flex-direction:column;
+  align-items: flex-end;
+  a{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    margin-top:10px;
+    text-decoration:none;
+    color: #fff;
+  }
+  a:hover{
+    color: red;
+  }
+`;
+
 export const UserContainer = styled.div`
   svg{
     margin: 0px 10px;
@@ -49,6 +68,14 @@ export const UserContainer = styled.div`
     height: 30px;
     color: #fff;
   }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`;
+
+export const IconsH = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 export const ButtonsMenuOff = styled.div`

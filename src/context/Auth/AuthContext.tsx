@@ -16,8 +16,10 @@ interface AuthProviderProps {
 
 interface User {
   email: string;
-  id: string;
+  id: number;
   name: string;
+  address: string;
+  admin: boolean;
 }
 
 interface AuthState {
