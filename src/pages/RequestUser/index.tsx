@@ -52,7 +52,7 @@ function RequestUser() {
                 </CardHeader>
                 {
                     requestUser.map((item) => (
-                        <CardRequest request={item} />
+                        <CardRequest key={item.id} request={item} />
                     ))
                 }
             </Request>
