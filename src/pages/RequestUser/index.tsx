@@ -48,7 +48,7 @@ function RequestUser() {
             </HeaderContainer>
             <Request>
                 <CardHeader>
-                    <span>Detalhes da compra:</span>
+                    <span>Pedidos</span>
                 </CardHeader>
                 {
                     requestUser.map((item) => (
