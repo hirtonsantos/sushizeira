@@ -67,11 +67,11 @@ function Cart({}) {
                 <CardProducts>
                    {
                        cart.length > 0 ? 
-                       cart.map((itemCart)=>(
-                           <CardProductCart key={itemCart.id} product={itemCart}/>
-                       ))
-                       :
-                       <span className="empty">Sem itens no carrinho</span>
+                        cart.map((itemCart)=>(
+                            <CardProductCart key={itemCart.id} product={itemCart}/>
+                        ))
+                        :
+                        <span className="empty">Sem itens no carrinho</span>
                    }
                 </CardProducts>
             </CartBody>

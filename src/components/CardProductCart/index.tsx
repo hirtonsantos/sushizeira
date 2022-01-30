@@ -1,6 +1,6 @@
 import { useAuth } from "../../context/Auth/AuthContext";
 import { useCart } from "../../context/Cart/CartContext";
-import {Container, Div, ContainerAmount} from "./style"
+import {Container, Div, ContainerAmount, ContainerDiv} from "./style"
 interface CardProductCartProps{
     product: Product;
 }
@@ -24,7 +24,7 @@ function CardProductCart({product}: CardProductCartProps) {
     return(
         <Container>
           <img src={product.img} alt="" /> 
-          <div>
+          <ContainerDiv>
             <span>{product.name}</span>
             <ContainerAmount>
                 <button onClick={() => subQuantidade(product)}>-</button>
@@ -35,7 +35,7 @@ function CardProductCart({product}: CardProductCartProps) {
                 <span>{`R$ ${((product.price*product.quantidade).toFixed(2)).toString().replace(".", ",")}`}</span>
                 <button onClick={() => deleteProduct(product)}>Remover</button>
             </Div>
-          </div>
+          </ContainerDiv>
         </Container>
 
     )

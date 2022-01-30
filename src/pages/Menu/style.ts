@@ -8,11 +8,60 @@ export const Container = styled.div`
     box-sizing: border-box;
 `;
 
+export const Mobile = styled.div`
+    display: block;
+    @media(min-width: 800px){
+      display: none;
+    }
+`;
+
+export const Desktop = styled.div`
+    display: none;
+    @media(min-width: 800px){
+      display: flex;
+    }
+`;
+
+export const Items = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+`;
+
+
+export const TypesCategory = styled.div`
+    display: flex;
+    flex-direction: column;
+    span{
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+    .colorName{
+      color: red;
+    }
+`;
+
+export const SearchItemCategory = styled.div`
+    display: flex;
+    align-items:center;
+    margin-bottom: 40px;
+    span{
+      margin-right: 10px;
+    }
+    input{
+      background: #4F5066;
+      border-radius: 20px;
+      border: 0px;
+      height: 20px;
+      padding: 5px;
+      color: #fff;
+    }
+`;
+
 export const Product = styled.div`
     display: flex;
     overflow-x: scroll;
     overflow-y: hidden;
-    &::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     width: 12px;
     height: 9px;
   }
