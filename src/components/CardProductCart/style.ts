@@ -33,17 +33,17 @@ export const Container = styled.div`
 export const Div = styled.div`
     display: flex;
     margin: 20px 0px;
-    box-sizing:border-box;
-    justify-content:space-around;
+    justify-content:space-between;
+    box-sizing: border-box;
     align-items:center;
     width: 100%;
-    
+    padding: 0px;
     button{
         background: #000000;
         color: #fff;
+        padding: 5px 10px;
         border-radius: 100px;
         border: 0px;
-        padding: 5px 10px;
         :hover{
             background: red;
         }
@@ -51,6 +51,9 @@ export const Div = styled.div`
     span{
         font-size:10px;
     }
+`;
+export const ContainerDiv = styled.div`
+    width: 100%;
 `;
 
 export const ContainerAmount = styled.div`

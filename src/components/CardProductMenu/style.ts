@@ -15,6 +15,7 @@ export const Container = styled.div`
     span{
         font-size: 12px;
         text-align:center;
+        line-height: normal;
     }
     width: 260px;
     background: #13141E;

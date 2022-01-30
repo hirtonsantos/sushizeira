@@ -48,11 +48,11 @@ function RequestUser() {
             </HeaderContainer>
             <Request>
                 <CardHeader>
-                    <span>Detalhes da compra:</span>
+                    <span>Pedidos</span>
                 </CardHeader>
                 {
                     requestUser.map((item) => (
-                        <CardRequest request={item} />
+                        <CardRequest key={item.id} request={item} />
                     ))
                 }
             </Request>

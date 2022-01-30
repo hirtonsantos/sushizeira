@@ -31,6 +31,9 @@ const GlobalStyle = createGlobalStyle`
 		height: 100vh;
 		background: #000;
 	}
+	button{
+		cursor: pointer;
+	}
 	svg:hover{
 		cursor: pointer;
 	}

@@ -125,9 +125,25 @@ export const CardProducts = styled.div`
   overflow-x:scroll;
   .empty{
     margin-top:20px;
+    padding: 4px;
+    overflow: hidden;
+  }
+  &::-webkit-scrollbar {
+    width: 12px;
+    height: 9px;
+  }
+  &::-webkit-scrollbar-track {
+    background: grey;
+    border-radius: 20px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #04000586;
+    border-radius: 20px;
   }
   @media(min-width:830px){
+    max-height: 700px;
     overflow-x: hidden;
+    overflow-y: scroll;
     flex-direction:column;
   }
 `;
