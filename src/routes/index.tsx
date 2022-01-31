@@ -6,10 +6,9 @@ import Signup from "../pages/Signup";
 import Menu from "../pages/Menu";
 import Cart from "../pages/Cart";
 import RequestUser from "../pages/RequestUser";
-import { HistoricPage } from "../components/OwnerDashboard/HistoryPage";
-import { ProductsPage } from "../components/OwnerDashboard/ProductsPage";
-import { RequestsPage } from "../components/OwnerDashboard/RequestsPage";
-
+import { RequestsPage } from "../pages/RequestsPage";
+import { ProductsPage } from "../pages/ProductsPage";
+import { HistoricPage } from "../pages/HistoryPage";
 /*import { PageNotFound } from "../pages/PageNotFound";
 import { Dashboard } from "../pages/Dashboard";
 import { Signup } from "../pages/Signup";
@@ -24,7 +23,7 @@ export const Routes = () => {
       <Route exact path="/menu" component={Menu} isPrivate={accessToken ? true : false}></Route>
       <Route exact path="/cart" component={Cart} isPrivate></Route>
       <Route exact path="/request" component={RequestUser} isPrivate></Route>
-      <Route exact path="/requestpage" component={RequestsPage}  isPrivate/>
+      <Route path="/requestPage" component={RequestsPage}  isPrivate/>
       <Route path="/products" component={ProductsPage} isPrivate/>
       <Route path="/historic" component={HistoricPage} isPrivate/>
     </Switch>

@@ -6,7 +6,7 @@ interface SelectBoxProps {
 }
 
 export const RequestConteiner = styled.div<SelectBoxProps>`
-    display: ${(props) => (props.ishow ? "flex" : "none")};
+    display: ${(props) => (props.ishow ? "none" : "flex")};
     flex-direction: column;
     width: 100%;
     align-items: center;
@@ -30,8 +30,17 @@ export const Box = styled.div`
     flex-direction: row;
     text-align: center;
     position: relative;
+    h2 {
+        overflow: hidden;
+        text-overflow: clip;
+        white-space: nowrap;
+        max-width: 12ch;  
+    }
     @media(max-width: 514px){
         border: none;
+        h2 {
+            max-width: 9ch;    
+        }
     }
     ${SelectBox}{
         position: absolute;
@@ -191,5 +200,22 @@ export const BoxNotRequest = styled.div<SelectBoxProps> `
     span {
         color: blue;
         font-family: 'Rock Salt';
+    }
+`
+
+export const Conteiner = styled.div<SelectBoxProps>`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #000000;
+    color: white;
+    position: relative;
+    height: 100%;
+    h1{
+        font-family: 'Rock Salt';
+        font-size: 25px;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        display: ${(props) => (props.ishow ? "none" : "flex")};
     }
 `

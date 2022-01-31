@@ -11,7 +11,8 @@ interface Request {
     id: number;
     price: number;
     status: string;
-    details: detailsProps[]
+    details: detailsProps[];
+    user: User;
 }
 
 interface detailsProps {
@@ -21,6 +22,14 @@ interface detailsProps {
   description: string;
   stock: number;
   timeToCook: number;
+}
+
+interface User {
+  address: string;
+  admin: boolean;
+  email: string;
+  id: number;
+  name: string;
 }
 
 interface OwnerProviderData {

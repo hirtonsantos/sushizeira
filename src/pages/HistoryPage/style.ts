@@ -14,6 +14,16 @@ export const Box = styled.div`
     justify-content: center;
     flex-direction: row;
     text-align: center;
+    h2 {
+        overflow: hidden;
+        text-overflow: clip;
+        white-space: nowrap;
+        max-width: 12ch;  
+    }
+    @media(max-width: 514px){
+        h2 {
+            max-width: 9ch;    
+        }
 `
 
 export const DataContent = styled.div`
@@ -41,6 +51,7 @@ export const Content = styled.div<SelectBoxProps>`
     color: white;
     font-weight: bold;
     width: 100%;
+    flex-direction: column;
     @media(min-width: 514px){
         width: 80%;
     }
@@ -72,5 +83,22 @@ export const BoxNotHistoric = styled.div<SelectBoxProps>`
     span {
         color: blue;
         font-family: 'Rock Salt';
+    }
+`
+
+export const Conteiner = styled.div<SelectBoxProps>`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #000000;
+    color: white;
+    position: relative;
+    height: 100%;
+    h1{
+        font-family: 'Rock Salt';
+        font-size: 25px;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        display: ${(props) => (props.ishow ? "none" : "flex")};
     }
 `

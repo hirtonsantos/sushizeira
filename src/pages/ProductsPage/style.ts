@@ -31,8 +31,17 @@ export const Box = styled.div`
     flex-direction: row;
     text-align: center;
     position: relative;
+    h2 {
+        overflow: hidden;
+        text-overflow: clip;
+        white-space: nowrap;
+        max-width: 12ch;  
+    }
     @media(max-width: 514px){
         border: none;
+        h2 {
+            max-width: 9ch;
+        }
     }
     ${SelectBox}{
         position: absolute;

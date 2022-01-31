@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { BsAlarm } from "react-icons/bs";
-import { useOwner } from "../../../context/Owner/ownerContext";
-import { useProduct } from "../../../context/Product/ProductContext";
-import { Header } from "../Header";
+import { useOwner } from "../../context/Owner/ownerContext";
+import { useProduct } from "../../context/Product/ProductContext";
+import { Header } from "../../components/OwnerDashboardHeader";
 import { Box, DataContent, RegisterContent, BoxContent, Conteiner, SelectBox, ProductsConteiner } from "./style";
 import { BoxConteiner } from "./style";
 
@@ -40,7 +40,7 @@ export const ProductsPage = ({}) => {
         }
         return(
         <BoxConteiner>
-          <Box> <h2> {item.name} </h2> </Box>
+          <Box> <h2 title={String(item.name)}> {item.name} </h2> </Box>
           <Box> <h2> {item.quantityStock} </h2> </Box>
           <Box> <h2> R$ {item.price} </h2> </Box>
           <Box> <BsAlarm color="blue" onClick={() => isNotOn()}/> 
