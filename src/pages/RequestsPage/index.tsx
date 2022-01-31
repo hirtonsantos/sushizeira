@@ -114,7 +114,7 @@ export const RequestsPage = () => {
           <Box> <h2 title={String(item.user.name)}> {item.user.name} </h2> </Box>
           <Box> <h2> pendente </h2> </Box>
           <Box> <h2> R$ {item.price} </h2> </Box>
-          <Box> <BsAlarm color="blue"/>
+          <Box>
           <NativeSelect 
               defaultValue={item.status}
               fullWidth

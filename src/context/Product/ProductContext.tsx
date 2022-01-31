@@ -8,17 +8,19 @@ interface ProductProvidersProps {
 }
 
 interface Product {
-    id: number;
+    id?: number;
     name: string;
     category: string;
     price: number;
     img: string;
     description?: string;
     quantityStock: number;
+    url?: string;
 }
 
 interface ProductProviderData {
   product: Product[];
+  createProduct: (product: Product) => void;
 }
 
 const ProductContext = createContext<ProductProviderData>({} as ProductProviderData);
@@ -27,8 +29,6 @@ export const ProductProvider = ({ children }: ProductProvidersProps) => {
   const [product, setProduct] = useState<Product[]>([]);
   const { user, accessToken } = useAuth();
   const [refresh, setRefresh] = useState(false)
-
-  
 
   useEffect(()=>{
     api
@@ -42,10 +42,22 @@ export const ProductProvider = ({ children }: ProductProvidersProps) => {
     })
     .catch() 
   }, [refresh])
-  
+
+  const createProduct = (product: Product) => { 
+    api
+    .post(`/products`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then((response) => {
+      console.log(response.data)
+    })
+    .catch()
+  }
 
   return (
-    <ProductContext.Provider value={{product}}>
+    <ProductContext.Provider value={{product, createProduct}}>
       {children}
     </ProductContext.Provider>
   );
@@ -53,3 +65,4 @@ export const ProductProvider = ({ children }: ProductProvidersProps) => {
 
 export const useProduct = () => useContext(ProductContext);
       
+

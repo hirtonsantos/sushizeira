@@ -1,29 +1,30 @@
 import { useState } from "react";
-import { BsAlarm } from "react-icons/bs";
 import { useOwner } from "../../context/Owner/ownerContext";
 import { useProduct } from "../../context/Product/ProductContext";
 import { Header } from "../../components/OwnerDashboardHeader";
-import { Box, DataContent, RegisterContent, BoxContent, Conteiner, SelectBox, ProductsConteiner } from "./style";
+import { Box, DataContent, RegisterContent, BoxContent, Conteiner, ProductsConteiner } from "./style";
 import { BoxConteiner } from "./style";
+import PopUpCreateProduct from "../../components/PopUpCreateProducts";
+import { NativeSelect } from "@mui/material";
 
-interface ProductsProps {
-  ison?: boolean;
-  ishow?:boolean;
-}
+export const ProductsPage = () => {
 
-export const ProductsPage = ({}) => {
-
-  const [isOn, setIsOn] = useState(false)
+  const [popUp, setPopUp] = useState(false);
   const { product } = useProduct();
   const { isShow } = useOwner()
 
+  const openPopUp = () => {
+    setPopUp(true)
+  }
+
   return (
     <Conteiner>
+       {popUp && <PopUpCreateProduct  setPopup={setPopUp}/>}
       <Header/>
       <ProductsConteiner ishow={isShow}>
       <BoxContent>
       <h1> Produtos </h1>
-      <button> Adicionar produto </button>
+      <button onClick={() => openPopUp()}> Adicionar produto </button>
       </BoxContent>
       <DataContent>
         <Box> <h2> Nome </h2> </Box>
@@ -35,21 +36,22 @@ export const ProductsPage = ({}) => {
       <RegisterContent>
       {
       product.map(item => {
-        const isNotOn = () => {
-          setIsOn(!isOn)
-        }
         return(
         <BoxConteiner>
           <Box> <h2 title={String(item.name)}> {item.name} </h2> </Box>
           <Box> <h2> {item.quantityStock} </h2> </Box>
           <Box> <h2> R$ {item.price} </h2> </Box>
-          <Box> <BsAlarm color="blue" onClick={() => isNotOn()}/> 
-          <SelectBox ison={isOn}>
-            <ul>
-              <li>Finalizar</li>
-              <li onClick={() => isNotOn()}>Cancelar</li>
-            </ul>
-          </SelectBox>
+          <Box>
+          <Box>
+          <NativeSelect 
+              fullWidth
+              id="select"
+              sx={{background: "white",}}
+            >
+              <option value={"Finalizar"}>Finalizar</option>
+              <option value={"Cancelado"}>Cancelar pedido</option>
+            </NativeSelect>
+          </Box>
           </Box>
           
         </BoxConteiner>

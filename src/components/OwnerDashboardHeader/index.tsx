@@ -5,6 +5,7 @@ import UserAvatar from "../../assets/dashboardOwner/User-Avatar.svg"
 import { useState } from "react"
 import { useHistory } from "react-router-dom"
 import { useOwner } from "../../context/Owner/ownerContext"
+import { useAuth } from "../../context/Auth/AuthContext"
 
 interface HeaderProps {
     openMenu?: boolean;
@@ -14,6 +15,7 @@ export const Header = ({openMenu}: HeaderProps) => {
 
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const { showIsOn } = useOwner()
+    const {signOut} = useAuth();
 
     const OpenMenu = () => {
         setIsOpen(!isOpen)
@@ -36,7 +38,7 @@ export const Header = ({openMenu}: HeaderProps) => {
         </Content>
         <ContentConfig>
             <span> Ola, Adm </span>
-            <p> Sair </p>
+            <p onClick={()=> signOut()}> Sair </p>
         </ContentConfig>
         <TiThMenu onClick={() => OpenMenu()}/>
         </ContainerBox>
