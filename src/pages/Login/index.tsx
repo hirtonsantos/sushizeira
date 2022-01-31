@@ -26,7 +26,7 @@ interface SignInCredentials {
   password: string
 }
 
-const Login = () => {
+const User = () => {
   const history = useHistory()
   const { signIn } = useAuth()
 
@@ -128,4 +128,4 @@ const Login = () => {
     </Container>
   )
 }
-export default Login
+export default User
