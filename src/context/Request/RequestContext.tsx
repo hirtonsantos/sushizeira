@@ -73,7 +73,21 @@ export const RequestProvider = ({ children }: RequestProvidersProps) => {
   }
 
   const updateRequest = (orderUpdate: Orders) =>{
-    
+    api
+    .patch(`/orders/${orderUpdate.id}`, orderUpdate, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then((response) => {
+      console.log(response.data)
+        setRequest([...request])
+        setRefresh(!refresh)
+    })
+    .catch((err) => {
+      console.log(err)
+      setRefresh(!refresh)
+    })
   }
 
   useEffect(()=>{

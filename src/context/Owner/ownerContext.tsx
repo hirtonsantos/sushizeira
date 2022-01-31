@@ -7,21 +7,26 @@ interface OwnerProvidersProps {
 }
 
 interface Request {
-    costumer: string;
-    id: number;
+    id: string;
     price: number;
     status: string;
     details: detailsProps[];
     user: User;
+    payment: string;
 }
 
+  
+
 interface detailsProps {
+  id: string;
   name: string;
-  price: number;
   category: string;
-  description: string;
-  stock: number;
-  timeToCook: number;
+  price: number;
+  img: string;
+  description?: string;
+  quantityStock: number;
+  quantidade:number;
+  userId: number;
 }
 
 interface User {

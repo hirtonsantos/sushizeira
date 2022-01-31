@@ -3,19 +3,56 @@ import { BsAlarm } from "react-icons/bs";
 import { useOwner } from "../../context/Owner/ownerContext";
 import { Header } from "../../components/OwnerDashboardHeader";
 import { Box, BoxConteiner, BoxInfo, BoxNotRequest, BoxStatics, Conteiner, ContentSearch, ContentStatics, DataContent, RegisterContent, RequestConteiner, SelectBox } from "./style";
+import { NativeSelect } from "@mui/material";
+import { useRequest } from "../../context/Request/RequestContext";
+
+interface Cart{
+  id: string;
+  name: string;
+  category: string;
+  price: number;
+  img: string;
+  description?: string;
+  quantityStock: number;
+  quantidade:number;
+  userId: number;
+}
+
+
+interface User {
+  email: string;
+  id: number;
+  name: string;
+  address: string;
+  admin: boolean;
+}
+
+interface Orders{
+  id: string;
+  price: number;
+  details: Cart[];
+  user: User;
+  status: string;
+  payment: string;
+}
 
 export const RequestsPage = () => {
 
   const [isOn, setIsOn] = useState(false)
-
+  const {updateRequest} = useRequest();
   const { request, isfinishedRequests, isShow } = useOwner()
   const [search, setSearch] = useState("")
-
+  
   const finishRequest = isfinishedRequests()
 
   const filteRequest = request.filter((item) => {
     return item.user.name.toLowerCase().includes(search.toLowerCase())
   })
+
+  const changeRequestStatus = (valor: string, item:Orders) =>{
+    item.status = valor
+    updateRequest({...item})
+  }
 
 
   return (
@@ -77,13 +114,19 @@ export const RequestsPage = () => {
           <Box> <h2 title={String(item.user.name)}> {item.user.name} </h2> </Box>
           <Box> <h2> pendente </h2> </Box>
           <Box> <h2> R$ {item.price} </h2> </Box>
-          <Box> <BsAlarm color="blue" onClick={() => isNotOn()}/>
-          <SelectBox ison={isOn}>
-            <ul>
-              <li onClick={() => trocarStatus()}>Finalizar</li>
-              <li onClick={() => isNotOn()}>Cancelar</li>
-            </ul>
-          </SelectBox>
+          <Box> <BsAlarm color="blue"/>
+          <NativeSelect 
+              defaultValue={item.status}
+              fullWidth
+              id="select"
+              onChange={(e)=> changeRequestStatus(e.target.value, item)}
+              sx={{background: "white",}}
+            >
+              <option value={"Aguardando aceitação"}>Aguardando aceitação</option>
+              <option value={"Em preparo"}>Em preparo</option>
+              <option value={"Em transporte"}>Em transporte</option>
+              <option value={"Finalizado"}>Finalizado</option>
+            </NativeSelect>
           </Box>
         </BoxConteiner>
       )})

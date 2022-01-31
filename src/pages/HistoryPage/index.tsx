@@ -1,6 +1,6 @@
 import { Conteiner } from "./style";
 import { Header } from "../../components/OwnerDashboardHeader";
-import {
+import {  
   Box,
   BoxConteiner,
   BoxNotHistoric,
@@ -43,7 +43,7 @@ export const HistoricPage = () => {
         <RegisterContent>
           {request.map((item, index) => {
             let timeTotal = request[index].details.reduce((acc, curr) => {
-              return acc + curr.timeToCook;
+              return acc;
             }, 0);
             if (isNaN(timeTotal)){
               timeTotal = 0
