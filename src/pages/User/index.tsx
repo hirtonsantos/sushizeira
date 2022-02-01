@@ -60,27 +60,27 @@ function User() {
   const [popupWarning, setPopupWarning] = useState(false)
   const [stars, setStars] = useState<number>(0)
   const {id} = useParams<{id: string | undefined}>();
-  const {request} = useRequest();
+  const {request, createRating, rating} = useRequest();
   const {accessToken, user, signOut} = useAuth();
   const {cart} = useCart();
   const history = useHistory();
+  console.log(rating)
   
   const activePopupWarning = () => {
     setPopupWarning(!popupWarning)
   }
 
   const formSchema = yup.object().shape({
-    review: yup.string(),
-    rating: yup.number(),
+    review: yup.string().required(),
+    rating: yup.number().required("Quantidade de estrelas obrigatória"),
   })
 
-  const { register, handleSubmit, setValue } = useForm<ReviewCredentials>({
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm<ReviewCredentials>({
     resolver: yupResolver(formSchema),
   })
 
   const onSubmitFunction = ({ review, rating }: ReviewCredentials) => {
-    console.log(review)
-    console.log(rating)
+    createRating({stars: rating, review: review, idRequest: id, userId: Number(request.find((item) => item.id === id)?.user.id)})
   }
 
   return (
@@ -113,18 +113,15 @@ function User() {
           <CardProducts>
             {
               request.find((item) => item.id === id)?.details.map((itemCard) => (
-                <CardProductCart product={itemCard} />  
+                <CardProductCart key={itemCard.id} product={itemCard} />  
               ))
             }
           </CardProducts>
         </ProductDetails>
         {
-          request.find((item) => item.id === id)?.status === "finalizado" && 
-        <ReviewDetails>
-          <Confirm>
-            Confirme a entrega e avalie o pedido em até 5 estrelas...
-          </Confirm>
-          
+          request.find((item) => item.id === id)?.status === "Finalizado" && 
+          rating.filter((item) => item.idRequest === id)?.length === 0 &&
+        <ReviewDetails>          
           <FormBox>
             <Form onSubmit={handleSubmit(onSubmitFunction)}>
               <TextField
@@ -133,6 +130,7 @@ function User() {
                 multiline
                 rows={5}
                 label='Avaliação'
+                error={!!errors.review?.message}
                 sx={{
                   backgroundColor: '#4F5066',
                   borderRadius: '15px',
@@ -156,10 +154,10 @@ function User() {
               <BottomReview>
                 <input
                   type='number'
-                  {...register('rating')}
                   value={stars}
                   hidden
                   readOnly
+                  {...register('rating')} 
                 />
                 <RatingDiv>
                   <Rating
