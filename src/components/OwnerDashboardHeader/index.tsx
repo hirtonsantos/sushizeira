@@ -29,7 +29,7 @@ export const Header = ({openMenu}: HeaderProps) => {
 
         <ContainerBox>
         <figure>
-            <img src={Logo} alt="Logo"/>
+            <img src={Logo} alt="Logo" onClick={() => history.push("/")}/>
         </figure>
         <Content>
         <h1 onClick={() => history.push("/requestPage")}> Pedidos </h1>

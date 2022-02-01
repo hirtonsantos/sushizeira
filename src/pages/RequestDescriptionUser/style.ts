@@ -7,6 +7,9 @@ export const ContainerA = styled.div`
     padding: 10px;
     box-sizing: border-box;
     height: 100%;
+    @media(max-width: 810px){
+      flex-direction: column-reverse;
+    }
 `;
 
 export const HeaderContainer = styled.div`
@@ -82,7 +85,7 @@ export const CartDetails = styled.div`
 
 export const DetailsOrder = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     background: white;
     padding: 20px;
     border-radius: 5px;
@@ -104,7 +107,8 @@ export const DetailsOrder = styled.div`
       overflow: hidden;
       text-overflow: clip;
       white-space: nowrap;
-      max-width: 10ch; 
+      /* max-width: 10ch;  */
+      font-size: 18px;
     }
     .space{
       margin-bottom:20px ;
@@ -118,6 +122,7 @@ export const DetailsOrder = styled.div`
     header {
       display: flex;
       justify-content: flex-start;
+      flex-direction: column;
       section{
         display: flex;
         margin-right: 50px;
@@ -126,9 +131,11 @@ export const DetailsOrder = styled.div`
           border-radius: 60px;
           width: 95px;
         }
-        div{
-          display: flex;
-          flex-direction: column;
+        div{          
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
       }
     }
@@ -151,6 +158,12 @@ export const DetailsOrder = styled.div`
         border: 2px solid #c3bdb5;
         margin-bottom: 10px;
       }
+    @media(min-width: 830px){
+      align-items: center;
+      section div{
+        flex-direction: row;
+      }
+    }
 `;
 
 export const CardHeader = styled.div`

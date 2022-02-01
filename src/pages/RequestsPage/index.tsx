@@ -112,11 +112,11 @@ export const RequestsPage = () => {
         }
 
         return (
-        <BoxConteiner>
-          <Box onClick={() => isRequestUser(item)}><h2 title={String(item.id)}> {item.id}</h2></Box>
+        <BoxConteiner onClick={() => isRequestUser(item)}>
+          <Box><h2 title={String(item.id)}> {item.id}</h2></Box>
           <Box> <h2 title={String(item.user.name)}> {item.user.name} </h2> </Box>
           <Box> <h2> pendente </h2> </Box>
-          <Box> <h2> R$ {item.price} </h2> </Box>
+          <Box> <h2> R$ {item.price.toFixed(2)} </h2> </Box>
           <Box>
           <NativeSelect 
               defaultValue={item.status}

@@ -64,6 +64,7 @@ export const ContainerBox = styled.div`
     figure{
         img{
             width: 70%;
+            cursor: pointer;
         }
     }
     svg{
@@ -102,6 +103,12 @@ export const ContentConfig = styled.div`
     justify-content: center;
     span {
         padding-bottom: 6px; 
+    }
+    p{
+        cursor: pointer;
+    }
+    p:hover{
+        text-decoration: underline;
     }
     @media(min-width: 875px){
         display: flex;

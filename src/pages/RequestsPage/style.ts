@@ -175,6 +175,7 @@ export const BoxConteiner = styled.div`
     ${Box}:nth-last-child(1) {
         border-right: none;
     } 
+    cursor: pointer;
     display: flex;
     flex-direction: row;
     background: white;
