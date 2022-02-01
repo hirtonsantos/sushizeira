@@ -38,6 +38,14 @@ interface Orders{
     payment: string;
 }
 
+interface Rating{
+  id?: string;
+  userId: number;
+  stars?: number;
+  review?: string;
+  idRequest?: string
+}
+
 
 
 interface RequestProviderData {
@@ -45,12 +53,15 @@ interface RequestProviderData {
   requestUser: Orders[];
   finishRequest: (cart: Cart[], price: number, payment: string) => void;
   updateRequest: (orderRequest: Orders) => void;
+  createRating: (data: Rating) => void;
+  rating: Rating[];
 }
 
 const RequestContext = createContext<RequestProviderData>({} as RequestProviderData);
 
 export const RequestProvider = ({ children }: RequestProvidersProps) => {
   const [request, setRequest] = useState<Orders[]>([]);
+  const [rating, setRating] = useState<Rating[]>([]);
   const [requestUser, setRequestUser] = useState<Orders[]>([]);
   const { user, accessToken } = useAuth();
   const [refresh, setRefresh] = useState(false)
@@ -90,6 +101,22 @@ export const RequestProvider = ({ children }: RequestProvidersProps) => {
     })
   }
 
+  const createRating = (data: Rating) =>{
+    api
+    .post(`/rating/`, data, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then((response) => {
+      setRating([...rating, response.data])
+    })
+    .catch((err) => {
+      console.log(err)
+      setRefresh(!refresh)
+    })
+  }
+
   useEffect(()=>{
     api
     .get(`/orders`, {
@@ -104,10 +131,23 @@ export const RequestProvider = ({ children }: RequestProvidersProps) => {
     .catch() 
   }, [refresh])
 
+  useEffect(()=>{
+    api
+    .get(`/rating`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then((response) => {
+      setRating(response.data)
+    })
+    .catch() 
+  }, [refresh])
+
   
 
   return (
-    <RequestContext.Provider value={{request, requestUser, finishRequest, updateRequest}}>
+    <RequestContext.Provider value={{rating, createRating, request, requestUser, finishRequest, updateRequest}}>
       {children}
     </RequestContext.Provider>
   );

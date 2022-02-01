@@ -23,13 +23,18 @@ export const Container = styled.div`
     border-radius: 30px;
     box-sizing: border-box;
     margin-bottom:20px;
+    cursor:pointer;
+    &:hover{
+        color: #13141E;
+        background: #fff;
+    }
 `;
 
 
 
 
 export const Status = styled.div`
-    background: #4CDE18;
+    background: ${props => props.color};
     width: 10px;
     height: 10px;
     animation: ${Pop} 1s infinite;

@@ -10,6 +10,7 @@ import { RequestsPage } from "../pages/RequestsPage";
 import { ProductsPage } from "../pages/ProductsPage";
 import { HistoricPage } from "../pages/HistoryPage";
 import RequestDescriptionUser from "../pages/RequestDescriptionUser";
+import User from "../pages/User";
 /*import { PageNotFound } from "../pages/PageNotFound";
 import { Dashboard } from "../pages/Dashboard";
 import { Signup } from "../pages/Signup";
@@ -28,6 +29,8 @@ export const Routes = () => {
       <Route path="/products" component={ProductsPage} isPrivate/>
       <Route path="/historic" component={HistoricPage} isPrivate/>
       <Route path="/teste" component={RequestDescriptionUser} isPrivate/>
+      <Route path="/details/:id" component={User} isPrivate/>
+      
     </Switch>
   )
 }

@@ -22,6 +22,7 @@ import {
   Page,
   BottomReview,
   RatingDiv,
+  CardProducts,
 } from './style'
 import { FaSignOutAlt } from 'react-icons/fa'
 import StarIcon from '@mui/icons-material/Star'
@@ -30,32 +31,57 @@ import { TextField, Rating } from '@mui/material'
 import * as yup from 'yup'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+import {Link, useHistory, useParams} from "react-router-dom"
+import CardProductCart from '../../components/CardProductCart'
+import { useOwner } from '../../context/Owner/ownerContext'
+import { useRequest } from '../../context/Request/RequestContext'
+import {GiShoppingCart} from "react-icons/gi";
+import Badge from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
+import { useAuth } from '../../context/Auth/AuthContext'
+import { useCart } from '../../context/Cart/CartContext'
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    border: `2px solid red`,
+    padding: '0 2px',
+    background: "red",
+    marginRight: "10px"
+  },
+}));
 
 interface ReviewCredentials {
   review?: string
   rating?: number
 }
 
+
 function User() {
   const [popupWarning, setPopupWarning] = useState(false)
   const [stars, setStars] = useState<number>(0)
-
+  const {id} = useParams<{id: string | undefined}>();
+  const {request, createRating, rating} = useRequest();
+  const {accessToken, user, signOut} = useAuth();
+  const {cart} = useCart();
+  const history = useHistory();
+  console.log(rating)
+  
   const activePopupWarning = () => {
     setPopupWarning(!popupWarning)
   }
 
   const formSchema = yup.object().shape({
-    review: yup.string(),
-    rating: yup.number(),
+    review: yup.string().required(),
+    rating: yup.number().required("Quantidade de estrelas obrigatória"),
   })
 
-  const { register, handleSubmit, setValue } = useForm<ReviewCredentials>({
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm<ReviewCredentials>({
     resolver: yupResolver(formSchema),
   })
 
   const onSubmitFunction = ({ review, rating }: ReviewCredentials) => {
-    console.log(review)
-    console.log(rating)
+    createRating({stars: rating, review: review, idRequest: id, userId: Number(request.find((item) => item.id === id)?.user.id)})
+  
   }
 
   return (
@@ -67,26 +93,36 @@ function User() {
         <Header></Header>
 
         <UserContainer>
-          <MyOrder>
-            <span>Olá, Gabriel</span>
-          </MyOrder>
-
-          <IconsH>
-            <FaSignOutAlt />
-          </IconsH>
-        </UserContainer>
+              <MyOrder>
+                    <span>Olá, {user.name}</span>
+                    <Link to={"/request"}>Meus Pedidos</Link>
+                </MyOrder>
+             
+                <IconsH>
+                    <StyledBadge badgeContent={cart.length} color="secondary">
+                        <GiShoppingCart onClick={() => history.push("/cart")}/>
+                    </StyledBadge>
+                    <FaSignOutAlt onClick={signOut}/>
+                </IconsH>
+          </UserContainer> 
       </HeaderContainer>
       <Title>Meu pedido</Title>
       <Page>
         <ProductDetails>
           <SubTitle>Detalhes do pedido:</SubTitle>
-          <OrderPrice>Valor da compra: R$ 984,00</OrderPrice>
-          <Quadrado />
+          <OrderPrice>Valor da compra: R$ {request.find((item) => item.id === id)?.price.toFixed(2).toString().replace(".", ",")}</OrderPrice>
+          <CardProducts>
+            {
+              request.find((item) => item.id === id)?.details.map((itemCard) => (
+                <CardProductCart key={itemCard.id} product={itemCard} />  
+              ))
+            }
+          </CardProducts>
         </ProductDetails>
-        <ReviewDetails>
-          <Confirm>
-            Confirme a entrega e avalie o pedido em até 5 estrelas...
-          </Confirm>
+        {
+          request.find((item) => item.id === id)?.status === "Finalizado" && 
+          rating.filter((item) => item.idRequest === id)?.length === 0 &&
+        <ReviewDetails>          
           <FormBox>
             <Form onSubmit={handleSubmit(onSubmitFunction)}>
               <TextField
@@ -95,6 +131,7 @@ function User() {
                 multiline
                 rows={5}
                 label='Avaliação'
+                error={!!errors.review?.message}
                 sx={{
                   backgroundColor: '#4F5066',
                   borderRadius: '15px',
@@ -118,10 +155,10 @@ function User() {
               <BottomReview>
                 <input
                   type='number'
-                  {...register('rating')}
                   value={stars}
                   hidden
                   readOnly
+                  {...register('rating')} 
                 />
                 <RatingDiv>
                   <Rating
@@ -157,6 +194,7 @@ function User() {
             </Form>
           </FormBox>
         </ReviewDetails>
+        }
       </Page>
     </Container>
   )

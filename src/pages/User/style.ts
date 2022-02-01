@@ -40,8 +40,9 @@ export const MyOrder = styled.div`
   }
 
   span {
-    font-family: Roboto;
-    margin-right: 1rem;
+    font-family: Rock Salt;
+    font-style: normal;
+    font-weight: normal;
   }
 `
 
@@ -180,3 +181,32 @@ export const BottomReview = styled.div`
 export const RatingDiv = styled.div`
   margin: 1rem 0;
 `
+
+export const CardProducts = styled.div`
+  display: flex;
+  overflow-x:scroll;
+  .empty{
+    margin-top:20px;
+    padding: 4px;
+    overflow: hidden;
+  }
+  &::-webkit-scrollbar {
+    width: 12px;
+    height: 9px;
+  }
+  &::-webkit-scrollbar-track {
+    background: grey;
+    border-radius: 20px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #04000586;
+    border-radius: 20px;
+  }
+  @media(min-width:830px){
+    max-height: 700px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    flex-direction:column;
+  }
+  margin-bottom:20px;
+`;
