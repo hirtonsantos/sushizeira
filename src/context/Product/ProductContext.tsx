@@ -1,5 +1,4 @@
 import { createContext, useContext, useState, ReactNode, useEffect } from "react";
-import toast from "react-hot-toast";
 import { api } from "../../services/api";
 import { useAuth } from "../Auth/AuthContext";
 
@@ -8,19 +7,28 @@ interface ProductProvidersProps {
 }
 
 interface Product {
-    id?: number;
-    name: string;
-    category: string;
-    price: number;
-    img: string;
-    description?: string;
-    quantityStock: number;
-    url?: string;
+  id: number;
+  name: string;
+  category: string;
+  price: number;
+  img: string;
+  description?: string;
+  quantityStock: number;
+}
+
+interface ProductProps {
+  id?: number | undefined;
+  name: string;
+  category: string;
+  price: number;
+  img: string;
+  description?: string;
+  quantityStock: number;
 }
 
 interface ProductProviderData {
   product: Product[];
-  createProduct: (product: Product) => void;
+  createProduct: (product: ProductProps) => void;
 }
 
 const ProductContext = createContext<ProductProviderData>({} as ProductProviderData);
@@ -29,6 +37,8 @@ export const ProductProvider = ({ children }: ProductProvidersProps) => {
   const [product, setProduct] = useState<Product[]>([]);
   const { user, accessToken } = useAuth();
   const [refresh, setRefresh] = useState(false)
+
+  
 
   useEffect(()=>{
     api
@@ -43,7 +53,7 @@ export const ProductProvider = ({ children }: ProductProvidersProps) => {
     .catch() 
   }, [refresh])
 
-  const createProduct = (product: Product) => { 
+  const createProduct = (product: ProductProps) => {
     api
     .post(`/products`, {
       headers: {
@@ -53,8 +63,9 @@ export const ProductProvider = ({ children }: ProductProvidersProps) => {
     .then((response) => {
       console.log(response.data)
     })
-    .catch()
+    .catch() 
   }
+  
 
   return (
     <ProductContext.Provider value={{product, createProduct}}>
@@ -65,4 +76,3 @@ export const ProductProvider = ({ children }: ProductProvidersProps) => {
 
 export const useProduct = () => useContext(ProductContext);
       
-
