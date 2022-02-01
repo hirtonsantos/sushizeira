@@ -43,8 +43,8 @@ function PopUpCreateProduct({setPopup}: PopUpProps) {
   });
 
   const onSubmitFunction = (data: Product) => {
+    console.log(data)
     createProduct(data)
-    console.log("cheguei")
   };
 
   const closePopUp = () => {
@@ -84,30 +84,24 @@ function PopUpCreateProduct({setPopup}: PopUpProps) {
               error={!!errors.img?.message}
               {...register("img")}
             />
-            <InputLabel htmlFor="select"> Estoque </InputLabel>
-            <NativeSelect
-              fullWidth
-              id="select"
+            <TextField
+              id="outlined-number"
+              label="Estoque"
+              type="number"
+              margin="normal"
               {...register("quantityStock")}
-              error={!!errors.quantityStock?.message}
-            >
-              <option>
-                10
-              </option>
-              <option>
-                20
-              </option>
-              <option>
-                30
-              </option>
-            </NativeSelect>
-            <InputLabel htmlFor="select"> Preço </InputLabel>
+              fullWidth
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
             <TextField
               margin="normal"
               fullWidth
               id="login-basic"
-              label="Descrição"
+              label="Preço"
               variant="outlined"
+              {...register("price")}
             />
             <InputLabel htmlFor="select">Selecionar a categoria:</InputLabel>
             <NativeSelect
