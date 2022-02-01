@@ -29,8 +29,8 @@ export const Routes = () => {
       <Route path="/historic" component={HistoricPage} isPrivate/>
       <Route path="/teste" component={RequestDescriptionUser} isPrivate/>
     </Switch>
-  );
-};
+  )
+}
 
 /*
 <Route path="/signup" component={Signup} />
