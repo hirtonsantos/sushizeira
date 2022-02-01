@@ -57,6 +57,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     const accessToken = localStorage.getItem("@sushizeira:accessToken");
     const user = localStorage.getItem("@sushizeira:user");
 
+
     if (accessToken && user) {
       return { accessToken, user: JSON.parse(user) };
     }
@@ -73,6 +74,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
     localStorage.setItem("@sushizeira:accessToken", accessToken);
     localStorage.setItem("@sushizeira:user", JSON.stringify(user));
+
 
     setData({ accessToken, user });
   }, []);

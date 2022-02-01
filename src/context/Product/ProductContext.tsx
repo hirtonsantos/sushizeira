@@ -1,5 +1,4 @@
 import { createContext, useContext, useState, ReactNode, useEffect } from "react";
-import toast from "react-hot-toast";
 import { api } from "../../services/api";
 import { useAuth } from "../Auth/AuthContext";
 
@@ -8,19 +7,29 @@ interface ProductProvidersProps {
 }
 
 interface Product {
-    id: number;
-    name: string;
-    category: string;
-    price: number;
-    img: string;
-    description?: string;
-    quantityStock: number;
+  id: number;
+  name: string;
+  category: string;
+  price: number;
+  img: string;
+  description?: string;
+  quantityStock: number;
 }
 
-
+interface ProductProps {
+  id?: number | undefined;
+  name: string;
+  category: string;
+  price: number;
+  img: string;
+  description?: string;
+  quantityStock: number;
+}
 
 interface ProductProviderData {
   product: Product[];
+  createProduct: (product: ProductProps) => void;
+  deleteProduct: (product: Product) => void;
 }
 
 const ProductContext = createContext<ProductProviderData>({} as ProductProviderData);
@@ -44,10 +53,34 @@ export const ProductProvider = ({ children }: ProductProvidersProps) => {
     })
     .catch() 
   }, [refresh])
+
+  const createProduct = (product: ProductProps) => {
+    console.log(product)
+    api
+    .post(`/products/`, product, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then((response) => {
+      console.log(response.data)
+    })
+    .catch((err) => console.log(err)) 
+  }
+
+  const deleteProduct = (product: Product) => {
+    api
+    .delete(`/products/${product.id}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then((_) => setRefresh(!refresh))
+  };
   
 
   return (
-    <ProductContext.Provider value={{product}}>
+    <ProductContext.Provider value={{product, createProduct, deleteProduct}}>
       {children}
     </ProductContext.Provider>
   );

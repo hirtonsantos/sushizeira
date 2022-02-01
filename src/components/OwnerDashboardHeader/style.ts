@@ -83,7 +83,6 @@ export const Content = styled.div`
     justify-content: space-between;
     align-items: center;
     h1{
-        font-size: 20px;
         color: red;
         :hover{
             cursor: pointer;
