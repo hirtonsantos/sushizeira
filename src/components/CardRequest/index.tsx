@@ -1,4 +1,5 @@
 import { Container, OrderStatusPayment, Status } from "./style";
+import { useHistory } from "react-router-dom"
 
 interface Cart{
     id: string;
@@ -36,13 +37,29 @@ interface CardRequestProps{
 
 
 function CardRequest({request}: CardRequestProps) {
-    
+    const history = useHistory();
+
+    const detailsRequestClient = () => {
+        history.push(`/details/${request.id}`)
+    }
+
+    function changeColor(){
+        if(request.status === "Aguardando aceitação"){
+            return "#4CDE18"
+        }else if(request.status === "Em preparo"){
+            return "blue"
+        }else if(request.status === "Em transporte"){
+            return "#10E8DB"
+        }
+        return "red"
+    }
+        
     return(
-        <Container>
+        <Container onClick={detailsRequestClient}>
             <span>Id: {request.id}</span>
             <OrderStatusPayment>
                 <span>Status: {request.status}</span>
-                <Status></Status>
+                <Status color={changeColor()}></Status>
             </OrderStatusPayment>
             <span>Forma de pagamento: {request.payment}</span>
         </Container>
