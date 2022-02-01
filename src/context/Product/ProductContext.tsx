@@ -54,8 +54,9 @@ export const ProductProvider = ({ children }: ProductProvidersProps) => {
   }, [refresh])
 
   const createProduct = (product: ProductProps) => {
+    console.log(product)
     api
-    .post(`/products`, {
+    .post(`/products/`, product, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -63,7 +64,7 @@ export const ProductProvider = ({ children }: ProductProvidersProps) => {
     .then((response) => {
       console.log(response.data)
     })
-    .catch() 
+    .catch((err) => console.log(err)) 
   }
   
 
