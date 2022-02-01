@@ -26,14 +26,14 @@ function CardProductCart({product}: CardProductCartProps) {
           <img src={product.img} alt="" /> 
           <ContainerDiv>
             <span>{product.name}</span>
-            <ContainerAmount>
+            {/* <ContainerAmount>
                 <button onClick={() => subQuantidade(product)}>-</button>
                 <span>{product.quantidade}</span>
                 <button onClick={() => addQuantidade(product)} className="btn-add">+</button>
-            </ContainerAmount>
+            </ContainerAmount> */}
             <Div>
                 <span>{`R$ ${((product.price*product.quantidade).toFixed(2)).toString().replace(".", ",")}`}</span>
-                <button onClick={() => deleteProduct(product)}>Remover</button>
+                {/* <button onClick={() => deleteProduct(product)}>Remover</button> */}
             </Div>
           </ContainerDiv>
         </Container>

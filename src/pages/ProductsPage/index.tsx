@@ -10,7 +10,7 @@ import { NativeSelect } from "@mui/material";
 export const ProductsPage = () => {
 
   const [popUp, setPopUp] = useState(false);
-  const { product } = useProduct();
+  const { product, deleteProduct } = useProduct();
   const { isShow } = useOwner()
 
   const openPopUp = () => {
@@ -42,15 +42,12 @@ export const ProductsPage = () => {
           <Box> <h2> {item.quantityStock} </h2> </Box>
           <Box> <h2> R$ {item.price} </h2> </Box>
           <Box>
-          <Box>
-          <NativeSelect 
-              fullWidth
-              id="select"
-              sx={{background: "white",}}
-            >
-              <option value={"Finalizar"}>Finalizar</option>
-              <option value={"Cancelado"}>Cancelar pedido</option>
-            </NativeSelect>
+          <Box 
+          onClick={() => deleteProduct(item)}
+          >
+          <h2>
+            Remover produto
+          </h2>
           </Box>
           </Box>
           

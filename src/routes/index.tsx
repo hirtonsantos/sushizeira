@@ -9,6 +9,7 @@ import RequestUser from "../pages/RequestUser";
 import { RequestsPage } from "../pages/RequestsPage";
 import { ProductsPage } from "../pages/ProductsPage";
 import { HistoricPage } from "../pages/HistoryPage";
+import RequestDescriptionUser from "../pages/RequestDescriptionUser";
 /*import { PageNotFound } from "../pages/PageNotFound";
 import { Dashboard } from "../pages/Dashboard";
 import { Signup } from "../pages/Signup";
@@ -26,6 +27,7 @@ export const Routes = () => {
       <Route path="/requestPage" component={RequestsPage}  isPrivate/>
       <Route path="/products" component={ProductsPage} isPrivate/>
       <Route path="/historic" component={HistoricPage} isPrivate/>
+      <Route path="/teste" component={RequestDescriptionUser} isPrivate/>
     </Switch>
   );
 };

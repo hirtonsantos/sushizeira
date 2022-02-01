@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, ReactNode, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { api } from "../../services/api";
 import { useAuth } from "../Auth/AuthContext";
 
@@ -39,7 +40,9 @@ interface User {
 
 interface OwnerProviderData {
   request: Request[];
+  requestUser: Request[];
   isfinishedRequests: () => void;
+  isRequestUser: (request: Request) => void;
   showIsOn: () => void;
   isShow: boolean;
 }
@@ -48,6 +51,7 @@ const OwnerContext = createContext<OwnerProviderData>({} as OwnerProviderData);
 
 export const OwnerProvider = ({ children }: OwnerProvidersProps) => {
   const [request, setRequest] = useState<Request[]>([]);
+  const [requestUser, setRequestUser] = useState<Request[]>([]);
   const { user, accessToken } = useAuth();
   const [refresh, setRefresh] = useState(false)
   const [isShow, setIsShow] = useState(false)
@@ -55,6 +59,7 @@ export const OwnerProvider = ({ children }: OwnerProvidersProps) => {
   console.log(request)
 
   // orders?userId${user.id}
+  const history = useHistory()
 
   useEffect(()=>{
     api
@@ -82,9 +87,15 @@ export const OwnerProvider = ({ children }: OwnerProvidersProps) => {
   const showIsOn = () => {
     setIsShow(!isShow)
   }
+
+  const isRequestUser = (request: Request) => {
+    console.log("é um teste", request)
+    setRequestUser([request])
+    history.push("/teste")
+  }
   
   return (
-    <OwnerContext.Provider value={{request, isfinishedRequests, showIsOn, isShow}}>
+    <OwnerContext.Provider value={{request, isfinishedRequests, showIsOn, isShow, isRequestUser, requestUser}}>
       {children}
     </OwnerContext.Provider>
   );

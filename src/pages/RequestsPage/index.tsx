@@ -5,6 +5,8 @@ import { Header } from "../../components/OwnerDashboardHeader";
 import { Box, BoxConteiner, BoxInfo, BoxNotRequest, BoxStatics, Conteiner, ContentSearch, ContentStatics, DataContent, RegisterContent, RequestConteiner, SelectBox } from "./style";
 import { NativeSelect } from "@mui/material";
 import { useRequest } from "../../context/Request/RequestContext";
+import { useHistory } from "react-router-dom";
+import RequestDescriptionUser from "../RequestDescriptionUser";
 
 interface Cart{
   id: string;
@@ -40,7 +42,7 @@ export const RequestsPage = () => {
 
   const [isOn, setIsOn] = useState(false)
   const {updateRequest} = useRequest();
-  const { request, isfinishedRequests, isShow } = useOwner()
+  const { request, isfinishedRequests, isShow, isRequestUser } = useOwner()
   const [search, setSearch] = useState("")
   
   const finishRequest = isfinishedRequests()
@@ -108,9 +110,10 @@ export const RequestsPage = () => {
             request[index].status = "finished"
           }
         }
+
         return (
         <BoxConteiner>
-          <Box><h2 title={String(item.id)}> {item.id}</h2></Box>
+          <Box onClick={() => isRequestUser(item)}><h2 title={String(item.id)}> {item.id}</h2></Box>
           <Box> <h2 title={String(item.user.name)}> {item.user.name} </h2> </Box>
           <Box> <h2> pendente </h2> </Box>
           <Box> <h2> R$ {item.price} </h2> </Box>

@@ -29,6 +29,7 @@ interface ProductProps {
 interface ProductProviderData {
   product: Product[];
   createProduct: (product: ProductProps) => void;
+  deleteProduct: (product: Product) => void;
 }
 
 const ProductContext = createContext<ProductProviderData>({} as ProductProviderData);
@@ -65,10 +66,20 @@ export const ProductProvider = ({ children }: ProductProvidersProps) => {
     })
     .catch() 
   }
+
+  const deleteProduct = (product: Product) => {
+    api
+    .delete(`/products/${product.id}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then((_) => setRefresh(!refresh))
+  };
   
 
   return (
-    <ProductContext.Provider value={{product, createProduct}}>
+    <ProductContext.Provider value={{product, createProduct, deleteProduct}}>
       {children}
     </ProductContext.Provider>
   );
