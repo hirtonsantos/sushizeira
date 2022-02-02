@@ -185,6 +185,7 @@ export const RatingDiv = styled.div`
 export const CardProducts = styled.div`
   display: flex;
   overflow-x:auto;
+  padding: 10px;
   .empty{
     margin-top:20px;
     padding: 4px;

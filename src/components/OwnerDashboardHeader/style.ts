@@ -64,6 +64,7 @@ export const ContainerBox = styled.div`
     figure{
         img{
             width: 70%;
+            cursor: pointer;
         }
     }
     svg{
@@ -78,12 +79,12 @@ export const ContainerBox = styled.div`
 `
 
 export const Content = styled.div`
-    width: 50vw;
     display: none;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     h1{
         color: red;
+        margin-right:30px;
         :hover{
             cursor: pointer;
         }

@@ -49,15 +49,13 @@ export const RequestsPage = () => {
   const finishRequest = isfinishedRequests()
 
   const filteRequest = request.filter((item) => {
-    return item.user.name.toLowerCase().includes(search.toLowerCase())
+    return item.user.name.toLowerCase().includes(search.toLowerCase()) || item.id.toLowerCase().includes(search.toLowerCase()) || item.status.toLowerCase().includes(search.toLowerCase())
   })
 
   const changeRequestStatus = (valor: string, item:Orders) =>{
     item.status = valor
     updateRequest({...item})
   }
-
-  
 
 
   return (
@@ -115,8 +113,8 @@ export const RequestsPage = () => {
         }
 
         return (
-        <BoxConteiner>
-          <Box onClick={() => isRequestUser(item)}><h2 title={String(item.id)}> {item.id}</h2></Box>
+        <BoxConteiner onClick={() => isRequestUser(item)}>
+          <Box><h2 title={String(item.id)}> {item.id}</h2></Box>
           <Box> <h2 title={String(item.user.name)}> {item.user.name} </h2> </Box>
           <Box> <h2> {item.status} </h2> </Box>
           <Box> <h2> {`R$ ${((item.price).toFixed(2)).toString().replace(".", ",")}`} </h2> </Box>
