@@ -6,6 +6,7 @@ export const Container = styled.div`
   font-family: 'Rock Salt', cursive;
   padding: 10px;
   box-sizing: border-box;
+  overflow-x: hidden;
 `
 
 export const Title = styled.div`
@@ -63,25 +64,6 @@ export const IconsH = styled.div`
   align-items: center;
 `
 
-export const ProductDetails = styled.div`
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  @media (min-width: 768px) {
-    margin-left: 1rem;
-  }
-}`
-
-export const Quadrado = styled.div`
-  text-align: center;
-  width: 200px;
-  height: 250px;
-  background: white;
-  margin: 2rem 0;
-  align-self: center;
-  background-color: #13141E;
-  border-radius: 20px;
-}`
 
 export const SubTitle = styled.span`
 }`
@@ -92,17 +74,11 @@ export const OrderPrice = styled.span`
   margin-top: 1.3rem;
 }`
 
-export const ReviewDetails = styled.div`
-  display: flex;
-  flex-direction: column;
-  font-family: Ubuntu;
-}`
 
 export const FormBox = styled.div`
   display: flex;
-  width: 90vw;
   justify-content: center;
-
+  width: 100%;
   button {
     background: #4cde18;
   }
@@ -110,9 +86,9 @@ export const FormBox = styled.div`
   @media (min-width: 768px) {
     order: 1;
     display: flex;
-    width: 800px;
     justify-content: center;
     margin-bottom: 40px;
+    max-width:700px;
   }
 
   @media (min-width: 1100px) {
@@ -127,9 +103,10 @@ export const Form = styled.form`
   padding: 20px 19px 26px 19px;
   box-sizing: border-box;
   margin-top: 20px;
-  width: 90%;
+  width: 100%;
   background: #000000;
   @media (min-width: 768px) {
+    max-width: 700px;
   }
 `
 
@@ -156,8 +133,9 @@ export const ButtonReviewSize = styled.div`
 
 export const Page = styled.div`
   display: flex;
-  flex-flow: column nowrap;
-  @media (min-width: 768px) {
+  justify-content: center;
+  flex-flow: column wrap;
+  @media (min-width: 830px) {
     flex-flow: row nowrap;
   }
 `
@@ -182,9 +160,19 @@ export const RatingDiv = styled.div`
   margin: 1rem 0;
 `
 
+export const DetailsOrderTitle = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+`
+
 export const CardProducts = styled.div`
   display: flex;
-  overflow-x:scroll;
+  overflow-x:auto;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
   .empty{
     margin-top:20px;
     padding: 4px;
@@ -204,8 +192,8 @@ export const CardProducts = styled.div`
   }
   @media(min-width:830px){
     max-height: 700px;
-    overflow-x: hidden;
-    overflow-y: scroll;
+    max-width: 400px;
+    overflow:auto;
     flex-direction:column;
   }
   margin-bottom:20px;

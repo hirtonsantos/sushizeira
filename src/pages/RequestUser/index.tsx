@@ -23,9 +23,9 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 function RequestUser() {
     const {user, signOut} = useAuth();
     const {cart} = useCart();
-    const {requestUser} = useRequest();
+    const {requestUser, getRequest, request} = useRequest();
     const history = useHistory();
-
+    console.log(requestUser)
     return(
         <Container>
             <HeaderContainer>
@@ -51,7 +51,8 @@ function RequestUser() {
                     <span>Pedidos</span>
                 </CardHeader>
                 {
-                    requestUser.map((item) => (
+                    (requestUser.length > 0 || getRequest()) &&
+                    request.filter((item) => item.user.id === user.id).reverse().map((item) => (
                         <CardRequest key={item.id} request={item} />
                     ))
                 }

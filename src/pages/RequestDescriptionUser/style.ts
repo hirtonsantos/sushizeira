@@ -7,6 +7,9 @@ export const ContainerA = styled.div`
     padding: 10px;
     box-sizing: border-box;
     height: 100%;
+    @media(max-width: 810px){
+      flex-direction: column-reverse;
+    }
 `;
 
 export const HeaderContainer = styled.div`
@@ -76,7 +79,7 @@ export const CartBody = styled.div`
 
 export const CartDetails = styled.div`
     width: 100%;
-    max-width:400px;
+    max-width: 400px;
     margin: 10px 0px 0px 0px;
 `;
 
@@ -88,7 +91,7 @@ export const DetailsOrder = styled.div`
     border-radius: 5px;
     box-sizing: border-box;
     margin: 20px 0px 0px 0px;
-    
+    width: 100%;
     span, label{
       font-family: Ubuntu;
       font-style: normal;
@@ -97,14 +100,17 @@ export const DetailsOrder = styled.div`
       line-height: 28px;
       color: black;
     }
+    .title{
+      font-family: Rock Salt;
+      font-style: normal;
+      font-weight: normal;
+      margin-bottom: 20px;
+    }
     .red{
       color: red;
     }
     .userId{
-      overflow: hidden;
-      text-overflow: clip;
-      white-space: nowrap;
-      max-width: 10ch; 
+      word-break: break-all;
     }
     .space{
       margin-bottom:20px ;
@@ -117,27 +123,37 @@ export const DetailsOrder = styled.div`
     }
     header {
       display: flex;
+      flex-direction: column;
       justify-content: flex-start;
+      flex-direction: column;
       section{
         display: flex;
-        margin-right: 50px;
+        align-items:center;
+        width: 100%;
         img{
           user-select: auto;
           border-radius: 60px;
           width: 95px;
+          height: 95px;
+          object-fit:cover;
         }
-        div{
-          display: flex;
-          flex-direction: column;
+        div{          
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+          }
+          
         }
-      }
+        margin-bottom: 20px;
     }
     .status{
         background: #b2e06b;
         text-align: center;
         border-radius: 5px;
-        margin-bottom: 5px;
+        margin-bottom: 15px;
         padding-bottom: 3px;
+        width: 100%;
     }
     .othersInformations {
       border-top: 2px solid black;
@@ -151,6 +167,12 @@ export const DetailsOrder = styled.div`
         border: 2px solid #c3bdb5;
         margin-bottom: 10px;
       }
+    @media(min-width: 830px){
+      align-items: center;
+      section div{
+        flex-direction: row;
+      }
+    }
 `;
 
 export const CardHeader = styled.div`
@@ -165,7 +187,7 @@ export const CardHeader = styled.div`
 
 export const CardProducts = styled.div`
   display: flex;
-  overflow-x:scroll;
+  overflow-x:auto;
   .empty{
     margin-top:20px;
     padding: 4px;
@@ -186,7 +208,7 @@ export const CardProducts = styled.div`
   @media(min-width:830px){
     max-height: 700px;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     flex-direction:column;
   }
 `;

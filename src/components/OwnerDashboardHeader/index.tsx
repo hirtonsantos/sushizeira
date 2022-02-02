@@ -6,6 +6,7 @@ import { useState } from "react"
 import { useHistory } from "react-router-dom"
 import { useOwner } from "../../context/Owner/ownerContext"
 import { useAuth } from "../../context/Auth/AuthContext"
+import { FaSignOutAlt } from "react-icons/fa"
 
 interface HeaderProps {
     openMenu?: boolean;
@@ -25,10 +26,10 @@ export const Header = ({openMenu}: HeaderProps) => {
     const history = useHistory()
 
     return (
-        <Container>
+        <Container >
 
         <ContainerBox>
-        <figure>
+        <figure onClick={() => history.push("/requestPage")}>
             <img src={Logo} alt="Logo"/>
         </figure>
         <Content>
@@ -38,7 +39,7 @@ export const Header = ({openMenu}: HeaderProps) => {
         </Content>
         <ContentConfig>
             <span> Ola, Adm </span>
-            <p onClick={()=> signOut()}> Sair </p>
+            <FaSignOutAlt onClick={signOut}/>
         </ContentConfig>
         <TiThMenu onClick={() => OpenMenu()}/>
         </ContainerBox>

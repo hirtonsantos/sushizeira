@@ -54,6 +54,7 @@ interface RequestProviderData {
   finishRequest: (cart: Cart[], price: number, payment: string) => void;
   updateRequest: (orderRequest: Orders) => void;
   createRating: (data: Rating) => void;
+  getRequest: () => void;
   rating: Rating[];
 }
 
@@ -75,6 +76,7 @@ export const RequestProvider = ({ children }: RequestProvidersProps) => {
       },
     })
     .then((response) => {
+        toast.success("Pedido realizado!")
         setRequest([...request, response.data])
         setRefresh(!refresh)
     })
@@ -117,6 +119,34 @@ export const RequestProvider = ({ children }: RequestProvidersProps) => {
     })
   }
 
+  const getRequest = () =>{
+    api
+    .get(`/orders`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then((response) => {
+      setRequest(response.data)
+      setRequestUser(response.data.filter((item:Orders)=>item.user.id === user.id))
+    })
+    .catch() 
+  }
+
+  useEffect(()=>{
+    api
+    .get(`/orders`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then((response) => {
+      setRequest(response.data)
+      setRequestUser(response.data.filter((item:Orders)=>item.user.id === user.id))
+    })
+    .catch() 
+  }, [requestUser.length])
+
   useEffect(()=>{
     api
     .get(`/orders`, {
@@ -144,10 +174,23 @@ export const RequestProvider = ({ children }: RequestProvidersProps) => {
     .catch() 
   }, [refresh])
 
+  useEffect(()=>{
+    api
+    .get(`/rating`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then((response) => {
+      setRating(response.data)
+    })
+    .catch() 
+  }, [rating.length])
+
   
 
   return (
-    <RequestContext.Provider value={{rating, createRating, request, requestUser, finishRequest, updateRequest}}>
+    <RequestContext.Provider value={{getRequest, rating, createRating, request, requestUser, finishRequest, updateRequest}}>
       {children}
     </RequestContext.Provider>
   );

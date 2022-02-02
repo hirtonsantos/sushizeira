@@ -28,7 +28,7 @@ export const Routes = () => {
       <Route path="/requestPage" component={RequestsPage}  isPrivate/>
       <Route path="/products" component={ProductsPage} isPrivate/>
       <Route path="/historic" component={HistoricPage} isPrivate/>
-      <Route path="/teste" component={RequestDescriptionUser} isPrivate/>
+      <Route path="/detailsOwner" component={RequestDescriptionUser} isPrivate/>
       <Route path="/details/:id" component={User} isPrivate/>
       
     </Switch>

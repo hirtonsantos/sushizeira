@@ -72,19 +72,18 @@ export const ContentSearch = styled.div`
     display: flex;
     width: 100%;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 20px;
     label {
         display: none;
     }
-    input {
-        border-radius: 20px;
-        width: 100%;
-        height: 22px;
-        border: none;
-        background: #4F5066;
-        color: white;
-        border-radius: 5px;
+    input{
+      background: #4F5066;
+      border-radius: 20px;
+      border: 0px;
+      height: 20px;
+      padding: 5px;
+      color: #fff;
     }
     svg {
         position: relative;
@@ -175,6 +174,7 @@ export const BoxConteiner = styled.div`
     ${Box}:nth-last-child(1) {
         border-right: none;
     } 
+    cursor: pointer;
     display: flex;
     flex-direction: row;
     background: white;

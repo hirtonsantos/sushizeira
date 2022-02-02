@@ -6,20 +6,41 @@ import { Box, DataContent, RegisterContent, BoxContent, Conteiner, ProductsConte
 import { BoxConteiner } from "./style";
 import PopUpCreateProduct from "../../components/PopUpCreateProducts";
 import { NativeSelect } from "@mui/material";
+import PopUpRemove from "../../components/PopupRemove";
+
+interface Product {
+  id: number;
+  name: string;
+  category: string;
+  price: number;
+  img: string;
+  description?: string;
+  quantityStock: number;
+}
+
 
 export const ProductsPage = () => {
 
   const [popUp, setPopUp] = useState(false);
-  const { product, deleteProduct } = useProduct();
+  const [popupDelete, setPopupDelete] = useState(false);
   const { isShow } = useOwner()
+  const [itemProduct, setItemProduct] = useState({} as Product);
+  const {product} = useProduct();
+
 
   const openPopUp = () => {
     setPopUp(true)
   }
 
+  const deleteProductPage = (item: Product) =>{
+    setPopupDelete(true);
+    setItemProduct(item)
+  }
+
   return (
     <Conteiner>
        {popUp && <PopUpCreateProduct  setPopup={setPopUp}/>}
+       {popupDelete && <PopUpRemove product={itemProduct} setPopup={setPopupDelete}/>}
       <Header/>
       <ProductsConteiner ishow={isShow}>
       <BoxContent>
@@ -40,12 +61,12 @@ export const ProductsPage = () => {
         <BoxConteiner>
           <Box> <h2 title={String(item.name)}> {item.name} </h2> </Box>
           <Box> <h2> {item.quantityStock} </h2> </Box>
-          <Box> <h2> R$ {item.price} </h2> </Box>
+          <Box> <h2> {`R$ ${((item.price).toFixed(2)).toString().replace(".", ",")}`} </h2> </Box>
           <Box>
           <Box 
-          onClick={() => deleteProduct(item)}
+          onClick={() => deleteProductPage(item)}
           >
-          <h2>
+          <h2 className="remove">
             Remover produto
           </h2>
           </Box>

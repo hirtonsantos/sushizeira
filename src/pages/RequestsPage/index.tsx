@@ -42,13 +42,14 @@ export const RequestsPage = () => {
 
   const [isOn, setIsOn] = useState(false)
   const {updateRequest} = useRequest();
-  const { request, isfinishedRequests, isShow, isRequestUser } = useOwner()
+  const { isfinishedRequests, isShow, isRequestUser } = useOwner();
+  const {request, getRequest} = useRequest();
   const [search, setSearch] = useState("")
   
   const finishRequest = isfinishedRequests()
 
   const filteRequest = request.filter((item) => {
-    return item.user.name.toLowerCase().includes(search.toLowerCase())
+    return item.user.name.toLowerCase().includes(search.toLowerCase()) || item.id.toLowerCase().includes(search.toLowerCase()) || item.status.toLowerCase().includes(search.toLowerCase())
   })
 
   const changeRequestStatus = (valor: string, item:Orders) =>{
@@ -56,11 +57,10 @@ export const RequestsPage = () => {
     updateRequest({...item})
   }
 
-
   return (
     <Conteiner>
       <Header/>
-      {request.length > 0 ? (
+      {request.length > 0 || getRequest() ? (
       <RequestConteiner ishow={isShow}>
 
       <h1> Pedidos </h1>
@@ -101,7 +101,7 @@ export const RequestsPage = () => {
       </DataContent>
       <RegisterContent>
       {
-      filteRequest.map((item,index) => {
+      filteRequest.reverse().map((item,index) => {
         const isNotOn = () => {
           setIsOn(!isOn)
         }
@@ -115,8 +115,8 @@ export const RequestsPage = () => {
         <BoxConteiner>
           <Box onClick={() => isRequestUser(item)}><h2 title={String(item.id)}> {item.id}</h2></Box>
           <Box> <h2 title={String(item.user.name)}> {item.user.name} </h2> </Box>
-          <Box> <h2> pendente </h2> </Box>
-          <Box> <h2> R$ {item.price} </h2> </Box>
+          <Box> <h2> {item.status} </h2> </Box>
+          <Box> <h2> {`R$ ${((item.price).toFixed(2)).toString().replace(".", ",")}`} </h2> </Box>
           <Box>
           <NativeSelect 
               defaultValue={item.status}

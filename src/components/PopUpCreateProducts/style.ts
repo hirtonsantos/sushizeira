@@ -84,11 +84,12 @@ export const DivContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background-color: #4d4e56;
+  background-color: #fff;
   border-radius: 30px;
   width: 400px;
   min-width: 200px;
   animation: ${Pop} 1s;
+  color: black;
   span {
     text-align: right;
     font-size: 20px;

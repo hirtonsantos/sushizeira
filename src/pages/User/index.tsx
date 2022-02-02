@@ -9,20 +9,17 @@ import {
   HeaderContainer,
   MyOrder,
   IconsH,
-  ProductDetails,
-  Quadrado,
   OrderPrice,
   SubTitle,
-  ReviewDetails,
   Form,
   FormBox,
   ButtonReview,
   ButtonReviewSize,
-  Confirm,
   Page,
   BottomReview,
   RatingDiv,
   CardProducts,
+  DetailsOrderTitle,
 } from './style'
 import { FaSignOutAlt } from 'react-icons/fa'
 import StarIcon from '@mui/icons-material/Star'
@@ -33,13 +30,13 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import {Link, useHistory, useParams} from "react-router-dom"
 import CardProductCart from '../../components/CardProductCart'
-import { useOwner } from '../../context/Owner/ownerContext'
 import { useRequest } from '../../context/Request/RequestContext'
 import {GiShoppingCart} from "react-icons/gi";
 import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import { useAuth } from '../../context/Auth/AuthContext'
 import { useCart } from '../../context/Cart/CartContext'
+import CardProductDetails from '../../components/CardProductDetails'
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -107,22 +104,21 @@ function User() {
           </UserContainer> 
       </HeaderContainer>
       <Title>Meu pedido</Title>
+      <DetailsOrderTitle>
+        <SubTitle>Detalhes do pedido:</SubTitle>
+        <OrderPrice>Valor da compra: R$ {request.find((item) => item.id === id)?.price.toFixed(2).toString().replace(".", ",")}</OrderPrice>
+      </DetailsOrderTitle>
       <Page>
-        <ProductDetails>
-          <SubTitle>Detalhes do pedido:</SubTitle>
-          <OrderPrice>Valor da compra: R$ {request.find((item) => item.id === id)?.price.toFixed(2).toString().replace(".", ",")}</OrderPrice>
           <CardProducts>
             {
               request.find((item) => item.id === id)?.details.map((itemCard) => (
-                <CardProductCart key={itemCard.id} product={itemCard} />  
+                <CardProductDetails key={itemCard.id} product={itemCard} />  
               ))
             }
           </CardProducts>
-        </ProductDetails>
         {
           request.find((item) => item.id === id)?.status === "Finalizado" && 
-          rating.filter((item) => item.idRequest === id)?.length === 0 &&
-        <ReviewDetails>          
+          rating.filter((item) => item.idRequest === id)?.length === 0 &&      
           <FormBox>
             <Form onSubmit={handleSubmit(onSubmitFunction)}>
               <TextField
@@ -193,7 +189,6 @@ function User() {
               </BottomReview>
             </Form>
           </FormBox>
-        </ReviewDetails>
         }
       </Page>
     </Container>
