@@ -17,9 +17,10 @@ export const Home = () => {
   };
   const previewReview = () => {
     if(index === 0){
-      setIndex(rating.length-1)
+      setIndex(rating.length - 1)
+    }else{
+      setIndex(index - 1);
     }
-    setIndex(index - 1);
   };
   
 
@@ -37,7 +38,7 @@ export const Home = () => {
           <Link to="/menu">Cardápio</Link>
         </div>
         <Rating>
-          <button onClick={() => previewReview} className="left">
+          <button onClick={previewReview} className="left">
             <FaArrowLeft />
           </button>
           <div className="infoBox">

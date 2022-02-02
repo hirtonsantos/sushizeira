@@ -66,7 +66,7 @@ const Signup = () => {
     api
       .post("/signup", { name, email, address, password })
       .then((response) => {
-        console.log(response.data);
+        history.push("/login")
       })
       .catch((err) => {
         console.log(err);
