@@ -9,10 +9,8 @@ import {
   HeaderContainer,
   MyOrder,
   IconsH,
-  ProductDetails,
   OrderPrice,
   SubTitle,
-  ReviewDetails,
   Form,
   FormBox,
   ButtonReview,
@@ -21,6 +19,7 @@ import {
   BottomReview,
   RatingDiv,
   CardProducts,
+  DetailsOrderTitle,
 } from './style'
 import { FaSignOutAlt } from 'react-icons/fa'
 import StarIcon from '@mui/icons-material/Star'
@@ -105,10 +104,11 @@ function User() {
           </UserContainer> 
       </HeaderContainer>
       <Title>Meu pedido</Title>
+      <DetailsOrderTitle>
+        <SubTitle>Detalhes do pedido:</SubTitle>
+        <OrderPrice>Valor da compra: R$ {request.find((item) => item.id === id)?.price.toFixed(2).toString().replace(".", ",")}</OrderPrice>
+      </DetailsOrderTitle>
       <Page>
-        <ProductDetails>
-          <SubTitle>Detalhes do pedido:</SubTitle>
-          <OrderPrice>Valor da compra: R$ {request.find((item) => item.id === id)?.price.toFixed(2).toString().replace(".", ",")}</OrderPrice>
           <CardProducts>
             {
               request.find((item) => item.id === id)?.details.map((itemCard) => (
@@ -116,11 +116,9 @@ function User() {
               ))
             }
           </CardProducts>
-        </ProductDetails>
         {
           request.find((item) => item.id === id)?.status === "Finalizado" && 
-          rating.filter((item) => item.idRequest === id)?.length === 0 &&
-        <ReviewDetails>          
+          rating.filter((item) => item.idRequest === id)?.length === 0 &&      
           <FormBox>
             <Form onSubmit={handleSubmit(onSubmitFunction)}>
               <TextField
@@ -191,7 +189,6 @@ function User() {
               </BottomReview>
             </Form>
           </FormBox>
-        </ReviewDetails>
         }
       </Page>
     </Container>

@@ -39,6 +39,7 @@ interface CartProviderData {
   subQuantidade: (product: Cart) => void;
   addQuantidade: (product: Cart) => void;
   deleteAll: () => void;
+  getCart: () => void;
   setRefresh:(text:boolean)=>void;
   refresh: boolean;
 }
@@ -118,6 +119,19 @@ export const CartProvider = ({ children }: CartProvidersProps) => {
     });
     setCart([])
   }
+
+  const getCart = () =>{
+    api
+    .get(`/cart`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then((response) => {
+      setCart(response.data.filter((item:Cart)=>Number(item.userId) == Number(user.id)))
+    })
+    .catch(error => setCart(cart)) 
+  }
   
 
   useEffect(()=>{
@@ -135,7 +149,7 @@ export const CartProvider = ({ children }: CartProvidersProps) => {
   
 
   return (
-    <CartContext.Provider value={{cart, deleteAll, addQuantidade, subQuantidade, addProduct, deleteProduct, setRefresh, refresh}}>
+    <CartContext.Provider value={{getCart, cart, deleteAll, addQuantidade, subQuantidade, addProduct, deleteProduct, setRefresh, refresh}}>
       {children}
     </CartContext.Provider>
   );

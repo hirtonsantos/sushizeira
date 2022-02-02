@@ -43,7 +43,7 @@ export const RequestsPage = () => {
   const [isOn, setIsOn] = useState(false)
   const {updateRequest} = useRequest();
   const { isfinishedRequests, isShow, isRequestUser } = useOwner();
-  const {request} = useRequest();
+  const {request, getRequest} = useRequest();
   const [search, setSearch] = useState("")
   
   const finishRequest = isfinishedRequests()
@@ -60,7 +60,7 @@ export const RequestsPage = () => {
   return (
     <Conteiner>
       <Header/>
-      {request.length > 0 ? (
+      {request.length > 0 || getRequest() ? (
       <RequestConteiner ishow={isShow}>
 
       <h1> Pedidos </h1>
@@ -101,7 +101,7 @@ export const RequestsPage = () => {
       </DataContent>
       <RegisterContent>
       {
-      filteRequest.map((item,index) => {
+      filteRequest.reverse().map((item,index) => {
         const isNotOn = () => {
           setIsOn(!isOn)
         }
@@ -112,8 +112,8 @@ export const RequestsPage = () => {
         }
 
         return (
-        <BoxConteiner onClick={() => isRequestUser(item)}>
-          <Box><h2 title={String(item.id)}> {item.id}</h2></Box>
+        <BoxConteiner>
+          <Box onClick={() => isRequestUser(item)}><h2 title={String(item.id)}> {item.id}</h2></Box>
           <Box> <h2 title={String(item.user.name)}> {item.user.name} </h2> </Box>
           <Box> <h2> {item.status} </h2> </Box>
           <Box> <h2> {`R$ ${((item.price).toFixed(2)).toString().replace(".", ",")}`} </h2> </Box>

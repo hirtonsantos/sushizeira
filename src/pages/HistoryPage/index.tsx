@@ -30,9 +30,6 @@ export const HistoricPage = () => {
             <h2> Cliente </h2>
           </Box>
           <Box>
-            <h2> Tempo </h2>
-          </Box>
-          <Box>
             <h2> Status </h2>
           </Box>
           <Box>
@@ -55,9 +52,6 @@ export const HistoricPage = () => {
                 </Box>
                 <Box>
                   <h2> {item.user.name} </h2>
-                </Box>
-                <Box>
-                  <h2> {timeTotal} min </h2>
                 </Box>
                 <Box>
                   <h2 title={String(item.status)}> {item.status} </h2>
