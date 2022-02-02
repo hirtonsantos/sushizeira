@@ -1,6 +1,25 @@
 import styled from "styled-components";
 // import { Box } from "../Registers/style";
 
+interface SelectBoxProps {
+    ison?: boolean;
+    ishow?: boolean;
+}
+
+export const ProductsConteiner = styled.div<SelectBoxProps>`
+    display: ${(props) => (props.ishow ? "none" : "flex")};
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+`
+
+export const SelectBox = styled.div<SelectBoxProps>`
+    width: 50px;
+    height: 50px;
+    background: white;
+    display: ${(props) => (props.ison ?  "flex" : "none")};
+`
+
 export const Box = styled.div`
     align-items: center;
     display: flex;
@@ -11,8 +30,31 @@ export const Box = styled.div`
     justify-content: center;
     flex-direction: row;
     text-align: center;
+    position: relative;
+    h2 {
+        overflow: hidden;
+        text-overflow: clip;
+        white-space: nowrap;
+        max-width: 12ch;  
+    }
     @media(max-width: 514px){
         border: none;
+        h2 {
+            max-width: 9ch;
+        }
+    }
+    ${SelectBox}{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        color: black;
+        font-size: 14px;
+        justify-content: center;
+        align-items: center;
+        li:hover{
+            text-decoration: underline;
+            cursor: pointer;
+        }
     }
 `
 
@@ -30,6 +72,9 @@ export const BoxConteiner = styled.div`
         margin: 0px;
         background: black;
         color: white;
+    }
+    .remove:hover{
+        cursor: pointer;
     }
 `
 
@@ -69,9 +114,10 @@ export const BoxContent = styled.div`
     button:hover{
         cursor: pointer;
     }
+   
 `
 
-export const Conteiner = styled.div`
+export const Conteiner = styled.div<SelectBoxProps>`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -84,6 +130,7 @@ export const Conteiner = styled.div`
         font-size: 25px;
         padding-top: 40px;
         padding-bottom: 40px;
+        display: ${(props) => (props.ishow ? "none" : "flex")};
     }
     button {
         background: #2ACA2A;
@@ -92,6 +139,6 @@ export const Conteiner = styled.div`
         border: 0px;
         font-weight: bold;
         width: 140px;
-        height: 28px;
     }
 `
+

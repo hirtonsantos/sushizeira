@@ -64,13 +64,14 @@ export const ContainerBox = styled.div`
     figure{
         img{
             width: 70%;
+            cursor: pointer;
         }
     }
     svg{
         width: 60px;
         height: 25px;
     }
-    @media(min-width: 875px){
+    @media(min-width: 920px){
         svg {
             display: none;
         }
@@ -78,18 +79,17 @@ export const ContainerBox = styled.div`
 `
 
 export const Content = styled.div`
-    width: 50vw;
     display: none;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     h1{
-        font-size: 20px;
         color: red;
+        margin-right:30px;
         :hover{
             cursor: pointer;
         }
     }
-    @media(min-width: 875px){
+    @media(min-width: 920px){
         display: flex;
     }
 `
@@ -102,9 +102,20 @@ export const ContentConfig = styled.div`
     font-weight: bold;
     justify-content: center;
     span {
-        padding-bottom: 6px; 
+        margin-right:20px;
+        font-family: 'Rock Salt', cursive;
     }
-    @media(min-width: 875px){
+    
+    @media(min-width: 920px){
         display: flex;
+        flex-direction:row;
+        align-items:center;
+        svg{
+            display: block;
+            height: 30px;
+            width: 30px;
+            color: #fff;
+        }
     }
+    
 `

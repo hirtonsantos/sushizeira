@@ -28,6 +28,14 @@ const GlobalStyle = createGlobalStyle`
 	}
 	body {
 		line-height: 1;
+		height: 100vh;
+		background: #000;
+	}
+	button{
+		cursor: pointer;
+	}
+	svg:hover{
+		cursor: pointer;
 	}
 	ol, ul {
 		list-style: none;

@@ -3,33 +3,26 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.png";
 import { ModalHome } from "../../components/ModalHome";
-import { api } from "../../services/api";
+import { useRequest } from "../../context/Request/RequestContext";
 import { Container, Info, Header, Rating } from "./style";
+import {AiTwotoneStar} from "react-icons/ai"
 
-interface RatingInter {
-  review: string;
-  stars: number;
-}
 
 export const Home = () => {
-  const [rating, setRating] = useState<RatingInter[]>([]);
+  const {rating} = useRequest();
   const [index, setIndex] = useState(0);
-  const handle = () => {
-    api
-      .get("/rating")
-      .then((response) => setRating(response.data))
-      .catch((err) => console.log(err));
-  };
+
   const nextReview = () => {
-    setIndex(index + 1);
-    console.log(index);
+    setIndex((index+1) % rating.length);
   };
   const previewReview = () => {
+    if(index === 0){
+      setIndex(rating.length-1)
+    }
     setIndex(index - 1);
   };
-  useEffect(() => {
-    handle();
-  }, [rating]);
+  
+
   return (
     <Container>
       <ModalHome />
@@ -39,7 +32,7 @@ export const Home = () => {
             <img src={Logo} alt="logo" />
             <h3>Sushizeira</h3>
           </div>
-          <Link to="/">Entrar</Link>
+          <Link to="/login">Entrar</Link>
           <Link to="/signup">Cadastre-se</Link>
           <Link to="/menu">Cardápio</Link>
         </div>
@@ -48,11 +41,14 @@ export const Home = () => {
             <FaArrowLeft />
           </button>
           <div className="infoBox">
-            {/* <span>{rating[index].review}</span> */}
+            <span>{rating.length > 0 && rating[index].review}</span>
           </div>
           <div className="infoBox__user">
-            <span>nome do usuario</span>
-            {/* <span>{rating[index].stars}</span> */}
+            <span>{(rating.length > 0 && rating[index].nameUser)}</span>
+            <div className="starClient">
+              <span>{rating.length > 0 && rating[index].stars}</span> 
+              {rating.length > 0 && <AiTwotoneStar />}
+            </div>
           </div>
           <button onClick={nextReview} className="right">
             <FaArrowRight />
@@ -82,9 +78,9 @@ export const Home = () => {
         </div>
 
         <div className="mobile">
-          <h4>Nós entregamos e fazemos você feliz</h4>
+          <h4>Cansado e com fome de japa?</h4>
           <span>
-            Cozinha coreana, japonesa, chinesa e europeia, todos os dias!
+            PEDE UM SUSHIZEIRA <span className="red">DELIVERY</span>
           </span>
         </div>
       </Info>

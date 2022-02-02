@@ -110,6 +110,9 @@ export const Info = styled.div`
     justify-content: space-around;
     height: 100%;
   }
+  .red{
+    color: red;
+  }
   .desktop {
     display: none;
   }
@@ -190,7 +193,7 @@ export const Rating = styled.div`
       justify-content: space-around;
       width: 100%;
       margin: 30px;
-      align-self: flex-end;
+      align-items: center;
     }
     button {
       background-color: red;
@@ -207,6 +210,15 @@ export const Rating = styled.div`
     .right {
       position: absolute;
       right: -20px;
+    }
+  }
+  .starClient{
+    display: flex;
+    align-items:center;
+    svg{
+      color: yellow;
+      height: 20px;
+      width: 20px;
     }
   }
 `;
