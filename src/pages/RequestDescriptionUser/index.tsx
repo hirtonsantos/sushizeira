@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 import {Header} from "../../components/OwnerDashboardHeader";
 import { useOwner } from "../../context/Owner/ownerContext";
 import { ContainerDiv, Div, Container } from "../../components/CardProductCart/style";
+import CardProductDetails from "../../components/CardProductDetails";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -70,15 +71,7 @@ function RequestDescriptionUser() {
                    {
                        requestUserId.details.length > 0 ? 
                        requestUserId.details.map((item)=>(
-                            <Container key={item.id}>
-                            <img src={item.img} alt="" /> 
-                            <ContainerDiv>
-                              <span>{item.name}</span>
-                              <Div>
-                                  <span>{`R$ ${((item.price).toFixed(2)).toString().replace(".", ",")}`}</span>
-                              </Div>
-                            </ContainerDiv>
-                          </Container>
+                            <CardProductDetails key={item.id} product={item} />  
                         ))
                         :
                         <span className="empty">Sem itens no carrinho</span>
@@ -102,10 +95,6 @@ function RequestDescriptionUser() {
                                 <span className="userId" title={requestUserId.id}>{requestUserId.id}</span>
                             </div>
                         </section>
-                        
-                        <span>
-                            R$ {valorTotalCarrinho} Reais
-                        </span>
                     </header>
 
                     <span className="status"> Este pedido está {requestUserId.status} </span>
@@ -115,6 +104,8 @@ function RequestDescriptionUser() {
                     <span className="space">Email:  <span className="red">{requestUserId.user.email}</span></span>
                     <span className="space">Nome:  <span className="red">{requestUserId.user.name}</span></span>
                     <span className="space">Endereço: <span className="red">{requestUserId.user.address}</span></span>
+                    <span className="space">Forma de pagamento: <span className="red">{requestUserId.payment}</span></span>
+                    <span className="space">Total a pagar: <span className="red">{`R$ ${((valorTotalCarrinho).toFixed(2)).toString().replace(".", ",")}`}</span></span>
                     </section>
 
                 </DetailsOrder>

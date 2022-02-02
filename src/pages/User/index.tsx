@@ -10,7 +10,6 @@ import {
   MyOrder,
   IconsH,
   ProductDetails,
-  Quadrado,
   OrderPrice,
   SubTitle,
   ReviewDetails,
@@ -18,7 +17,6 @@ import {
   FormBox,
   ButtonReview,
   ButtonReviewSize,
-  Confirm,
   Page,
   BottomReview,
   RatingDiv,
@@ -33,13 +31,13 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import {Link, useHistory, useParams} from "react-router-dom"
 import CardProductCart from '../../components/CardProductCart'
-import { useOwner } from '../../context/Owner/ownerContext'
 import { useRequest } from '../../context/Request/RequestContext'
 import {GiShoppingCart} from "react-icons/gi";
 import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import { useAuth } from '../../context/Auth/AuthContext'
 import { useCart } from '../../context/Cart/CartContext'
+import CardProductDetails from '../../components/CardProductDetails'
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -114,7 +112,7 @@ function User() {
           <CardProducts>
             {
               request.find((item) => item.id === id)?.details.map((itemCard) => (
-                <CardProductCart key={itemCard.id} product={itemCard} />  
+                <CardProductDetails key={itemCard.id} product={itemCard} />  
               ))
             }
           </CardProducts>

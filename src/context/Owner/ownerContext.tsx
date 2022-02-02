@@ -89,9 +89,8 @@ export const OwnerProvider = ({ children }: OwnerProvidersProps) => {
   }
 
   const isRequestUser = (request: Request) => {
-    console.log("é um teste", request)
     setRequestUser([request])
-    history.push("/teste")
+    history.push("/detailsOwner")
   }
   
   return (

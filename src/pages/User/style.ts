@@ -184,7 +184,7 @@ export const RatingDiv = styled.div`
 
 export const CardProducts = styled.div`
   display: flex;
-  overflow-x:scroll;
+  overflow-x:auto;
   .empty{
     margin-top:20px;
     padding: 4px;
@@ -205,7 +205,7 @@ export const CardProducts = styled.div`
   @media(min-width:830px){
     max-height: 700px;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     flex-direction:column;
   }
   margin-bottom:20px;

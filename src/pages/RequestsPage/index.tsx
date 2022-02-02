@@ -42,7 +42,8 @@ export const RequestsPage = () => {
 
   const [isOn, setIsOn] = useState(false)
   const {updateRequest} = useRequest();
-  const { request, isfinishedRequests, isShow, isRequestUser } = useOwner()
+  const { isfinishedRequests, isShow, isRequestUser } = useOwner();
+  const {request} = useRequest();
   const [search, setSearch] = useState("")
   
   const finishRequest = isfinishedRequests()
@@ -55,6 +56,8 @@ export const RequestsPage = () => {
     item.status = valor
     updateRequest({...item})
   }
+
+  
 
 
   return (
@@ -115,8 +118,8 @@ export const RequestsPage = () => {
         <BoxConteiner>
           <Box onClick={() => isRequestUser(item)}><h2 title={String(item.id)}> {item.id}</h2></Box>
           <Box> <h2 title={String(item.user.name)}> {item.user.name} </h2> </Box>
-          <Box> <h2> pendente </h2> </Box>
-          <Box> <h2> R$ {item.price} </h2> </Box>
+          <Box> <h2> {item.status} </h2> </Box>
+          <Box> <h2> {`R$ ${((item.price).toFixed(2)).toString().replace(".", ",")}`} </h2> </Box>
           <Box>
           <NativeSelect 
               defaultValue={item.status}

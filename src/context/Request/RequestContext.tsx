@@ -129,7 +129,7 @@ export const RequestProvider = ({ children }: RequestProvidersProps) => {
       setRequestUser(response.data.filter((item:Orders)=>item.user.id === user.id))
     })
     .catch() 
-  }, [refresh])
+  }, [refresh, requestUser.length])
 
   useEffect(()=>{
     api
@@ -142,7 +142,7 @@ export const RequestProvider = ({ children }: RequestProvidersProps) => {
       setRating(response.data)
     })
     .catch() 
-  }, [refresh])
+  }, [refresh, rating.length])
 
   
 

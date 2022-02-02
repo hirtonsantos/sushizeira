@@ -57,7 +57,7 @@ function PopUpCreateProduct({setPopup}: PopUpProps) {
         <Div>
           <Form onSubmit={handleSubmit(onSubmitFunction)}>
             <IoCloseCircle onClick={() => closePopUp()}/>
-            <h3>Criar Hábito</h3>
+            <h3>Criar Produto</h3>
             <TextField
               fullWidth
               id="login-basic"

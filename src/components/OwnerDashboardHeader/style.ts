@@ -70,7 +70,7 @@ export const ContainerBox = styled.div`
         width: 60px;
         height: 25px;
     }
-    @media(min-width: 875px){
+    @media(min-width: 920px){
         svg {
             display: none;
         }
@@ -88,7 +88,7 @@ export const Content = styled.div`
             cursor: pointer;
         }
     }
-    @media(min-width: 875px){
+    @media(min-width: 920px){
         display: flex;
     }
 `
@@ -101,9 +101,20 @@ export const ContentConfig = styled.div`
     font-weight: bold;
     justify-content: center;
     span {
-        padding-bottom: 6px; 
+        margin-right:20px;
+        font-family: 'Rock Salt', cursive;
     }
-    @media(min-width: 875px){
+    
+    @media(min-width: 920px){
         display: flex;
+        flex-direction:row;
+        align-items:center;
+        svg{
+            display: block;
+            height: 30px;
+            width: 30px;
+            color: #fff;
+        }
     }
+    
 `

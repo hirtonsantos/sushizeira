@@ -76,7 +76,7 @@ export const CartBody = styled.div`
 
 export const CartDetails = styled.div`
     width: 100%;
-    max-width:400px;
+    max-width: 600px;
     margin: 10px 0px 0px 0px;
 `;
 
@@ -88,7 +88,7 @@ export const DetailsOrder = styled.div`
     border-radius: 5px;
     box-sizing: border-box;
     margin: 20px 0px 0px 0px;
-    
+    width: 100%;
     span, label{
       font-family: Ubuntu;
       font-style: normal;
@@ -101,10 +101,7 @@ export const DetailsOrder = styled.div`
       color: red;
     }
     .userId{
-      overflow: hidden;
-      text-overflow: clip;
-      white-space: nowrap;
-      max-width: 10ch; 
+      word-break: break-all;
     }
     .space{
       margin-bottom:20px ;
@@ -117,10 +114,11 @@ export const DetailsOrder = styled.div`
     }
     header {
       display: flex;
+      flex-direction: column;
       justify-content: flex-start;
       section{
         display: flex;
-        margin-right: 50px;
+        width: 100%;
         img{
           user-select: auto;
           border-radius: 60px;
@@ -130,6 +128,7 @@ export const DetailsOrder = styled.div`
           display: flex;
           flex-direction: column;
         }
+        
       }
     }
     .status{
@@ -165,7 +164,7 @@ export const CardHeader = styled.div`
 
 export const CardProducts = styled.div`
   display: flex;
-  overflow-x:scroll;
+  overflow-x:auto;
   .empty{
     margin-top:20px;
     padding: 4px;
@@ -186,7 +185,7 @@ export const CardProducts = styled.div`
   @media(min-width:830px){
     max-height: 700px;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     flex-direction:column;
   }
 `;

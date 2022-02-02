@@ -73,6 +73,9 @@ export const BoxConteiner = styled.div`
         background: black;
         color: white;
     }
+    .remove:hover{
+        cursor: pointer;
+    }
 `
 
 export const DataContent = styled.div`
@@ -111,6 +114,7 @@ export const BoxContent = styled.div`
     button:hover{
         cursor: pointer;
     }
+   
 `
 
 export const Conteiner = styled.div<SelectBoxProps>`
@@ -135,7 +139,6 @@ export const Conteiner = styled.div<SelectBoxProps>`
         border: 0px;
         font-weight: bold;
         width: 140px;
-        height: 28px;
     }
 `
 

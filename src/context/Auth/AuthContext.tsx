@@ -82,7 +82,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   const signOut = useCallback(() => {
     localStorage.removeItem("@sushizeira:accessToken");
     localStorage.removeItem("@sushizeira:user");
-
+    history.push("/")
     setData({} as AuthState);
   }, []);
 
