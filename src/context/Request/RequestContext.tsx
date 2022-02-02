@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { api } from "../../services/api";
 import { useAuth } from "../Auth/AuthContext";
 import { v4 as uuid } from 'uuid';
+import { setRef } from "@mui/material";
 
 interface RequestProvidersProps {
     children: ReactNode;
@@ -44,6 +45,7 @@ interface Rating{
   stars?: number;
   review?: string;
   idRequest?: string
+  nameUser: string;
 }
 
 
@@ -55,6 +57,7 @@ interface RequestProviderData {
   updateRequest: (orderRequest: Orders) => void;
   createRating: (data: Rating) => void;
   getRequest: () => void;
+  getRating: () => void;
   rating: Rating[];
 }
 
@@ -133,6 +136,20 @@ export const RequestProvider = ({ children }: RequestProvidersProps) => {
     .catch() 
   }
 
+  const getRating = () =>{
+    api
+    .get(`/rating`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then((response) => {
+      setRating(response.data)
+      setRefresh(!refresh)
+    })
+    .catch() 
+  }
+
   useEffect(()=>{
     api
     .get(`/orders`, {
@@ -190,7 +207,7 @@ export const RequestProvider = ({ children }: RequestProvidersProps) => {
   
 
   return (
-    <RequestContext.Provider value={{getRequest, rating, createRating, request, requestUser, finishRequest, updateRequest}}>
+    <RequestContext.Provider value={{getRating, getRequest, rating, createRating, request, requestUser, finishRequest, updateRequest}}>
       {children}
     </RequestContext.Provider>
   );

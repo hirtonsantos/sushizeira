@@ -77,8 +77,7 @@ function User() {
   })
 
   const onSubmitFunction = ({ review, rating }: ReviewCredentials) => {
-    createRating({stars: rating, review: review, idRequest: id, userId: Number(request.find((item) => item.id === id)?.user.id)})
-  
+    createRating({nameUser: user.name, stars: rating, review: review, idRequest: id, userId: Number(request.find((item) => item.id === id)?.user.id)})
   }
 
   return (

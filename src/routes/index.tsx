@@ -4,6 +4,7 @@ import { Route } from "./Route";
 import { useAuth } from "../context/Auth/AuthContext";
 import Signup from "../pages/Signup";
 import Menu from "../pages/Menu";
+import { Home } from "../pages/Home";
 import Cart from "../pages/Cart";
 import RequestUser from "../pages/RequestUser";
 import { RequestsPage } from "../pages/RequestsPage";
@@ -11,16 +12,13 @@ import { ProductsPage } from "../pages/ProductsPage";
 import { HistoricPage } from "../pages/HistoryPage";
 import RequestDescriptionUser from "../pages/RequestDescriptionUser";
 import User from "../pages/User";
-/*import { PageNotFound } from "../pages/PageNotFound";
-import { Dashboard } from "../pages/Dashboard";
-import { Signup } from "../pages/Signup";
-*/
 
 export const Routes = () => {
-  const { accessToken, user } = useAuth();
+  const { accessToken} = useAuth();
   return (
     <Switch>
-      <Route exact path="/" component={Login} />
+      <Route exact path="/" component={Home}/>
+      <Route exact path="/login" component={Login} />
       <Route exact path="/signup" component={Signup} />
       <Route exact path="/menu" component={Menu} isPrivate={accessToken ? true : false}></Route>
       <Route exact path="/cart" component={Cart} isPrivate></Route>
@@ -35,7 +33,4 @@ export const Routes = () => {
   )
 }
 
-/*
-<Route path="/signup" component={Signup} />
-<Route component={PageNotFound} isPrivate={!!accessToken} />
-*/
+
