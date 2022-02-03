@@ -55,7 +55,6 @@ export const ProductProvider = ({ children }: ProductProvidersProps) => {
   }, [refresh])
 
   const createProduct = (product: ProductProps) => {
-    console.log(product.price)
     api
     .post(`/products/`, product, {
       headers: {
