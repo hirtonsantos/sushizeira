@@ -82,11 +82,11 @@ export const RequestsPage = () => {
             <span> Pedidos </span>
           </BoxStatics>
           <BoxStatics>
-            <h2> {request.length - Number(finishRequest)} </h2>
+            <h2> {request.filter((item) => item.status !== "Finalizado").length} </h2>
             <span> Pendentes </span>
           </BoxStatics>
           <BoxStatics>
-            <h2> {finishRequest} </h2>
+            <h2> {request.filter((item) => item.status === "Finalizado").length} </h2>
             <span> Enviados </span>
           </BoxStatics>
         </ContentStatics>
@@ -112,7 +112,7 @@ export const RequestsPage = () => {
         }
 
         return (
-        <BoxConteiner>
+        <BoxConteiner key={index}>
           <Box onClick={() => isRequestUser(item)}><h2 title={String(item.id)}> {item.id}</h2></Box>
           <Box> <h2 title={String(item.user.name)}> {item.user.name} </h2> </Box>
           <Box> <h2> {item.status} </h2> </Box>

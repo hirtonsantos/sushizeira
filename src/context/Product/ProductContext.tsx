@@ -55,7 +55,7 @@ export const ProductProvider = ({ children }: ProductProvidersProps) => {
   }, [refresh])
 
   const createProduct = (product: ProductProps) => {
-    console.log(product)
+    console.log(product.price)
     api
     .post(`/products/`, product, {
       headers: {
@@ -63,7 +63,7 @@ export const ProductProvider = ({ children }: ProductProvidersProps) => {
       },
     })
     .then((response) => {
-      console.log(response.data)
+      setRefresh(!refresh)
     })
     .catch((err) => console.log(err)) 
   }

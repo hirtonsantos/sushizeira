@@ -20,7 +20,7 @@ export const HistoricPage = () => {
       <Header />
 
       <h1> Histórico </h1>
-      {request.length !== 5 ? (
+      {request && request.length !== 5 ? (
       <Content ishow={isShow}>
         <DataContent>
           <Box>
@@ -38,7 +38,7 @@ export const HistoricPage = () => {
         </DataContent>
 
         <RegisterContent>
-          {request.map((item, index) => {
+          {request && request.map((item, index) => {
             let timeTotal = request[index].details.reduce((acc, curr) => {
               return acc;
             }, 0);

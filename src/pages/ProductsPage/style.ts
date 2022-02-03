@@ -56,6 +56,9 @@ export const Box = styled.div`
             cursor: pointer;
         }
     }
+    svg{
+        color: red;
+    }
 `
 
 export const BoxConteiner = styled.div`

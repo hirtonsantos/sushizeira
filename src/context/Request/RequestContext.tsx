@@ -101,7 +101,6 @@ export const RequestProvider = ({ children }: RequestProvidersProps) => {
         setRefresh(!refresh)
     })
     .catch((err) => {
-      console.log(err)
       setRefresh(!refresh)
     })
   }
@@ -117,7 +116,6 @@ export const RequestProvider = ({ children }: RequestProvidersProps) => {
       setRating([...rating, response.data])
     })
     .catch((err) => {
-      console.log(err)
       setRefresh(!refresh)
     })
   }
@@ -131,6 +129,7 @@ export const RequestProvider = ({ children }: RequestProvidersProps) => {
     })
     .then((response) => {
       setRequest(response.data)
+      setRefresh(!refresh)
       setRequestUser(response.data.filter((item:Orders)=>item.user.id === user.id))
     })
     .catch() 

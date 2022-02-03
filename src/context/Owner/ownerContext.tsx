@@ -56,8 +56,6 @@ export const OwnerProvider = ({ children }: OwnerProvidersProps) => {
   const [refresh, setRefresh] = useState(false)
   const [isShow, setIsShow] = useState(false)
 
-  console.log(request)
-
   const history = useHistory()
 
   useEffect(()=>{

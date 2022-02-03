@@ -43,8 +43,17 @@ function PopUpCreateProduct({setPopup}: PopUpProps) {
   });
 
   const onSubmitFunction = (data: Product) => {
-    console.log(data)
-    createProduct(data)
+    if(data.category === "Peças"){
+      data.category = "pecas"
+    }else if(data.category === "Temaki"){
+      data.category = "temaki"
+    }else if(data.category === "Combinados"){
+      data.category = "combinados"
+    }else if(data.category === "Bebidas"){
+      data.category = "bebida"
+    }
+    data.price = Number(data.price.toString().replaceAll(",", "."))
+    createProduct({...data})
   };
 
   const closePopUp = () => {
@@ -111,10 +120,16 @@ function PopUpCreateProduct({setPopup}: PopUpProps) {
               error={!!errors.category?.message}
             >
               <option>
-                Alimentação
+                Peças
               </option>
               <option>
-                Bebidas
+                Bebida
+              </option>
+              <option>
+                Combinados
+              </option>
+              <option>
+                Temaki
               </option>
             </NativeSelect>
             <Button type="submit" text="Adicionar" />
