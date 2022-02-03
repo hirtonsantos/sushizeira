@@ -78,7 +78,7 @@ function Menu() {
             </UserContainer> 
             : 
             <ButtonsMenuOff>
-              <button className="btn-login" onClick={() => history.push("/")}>Entrar</button>
+              <button className="btn-login" onClick={() => history.push("/login")}>Entrar</button>
               <button onClick={() => history.push("/signup")}>Cadastrar</button>
             </ButtonsMenuOff>
           }

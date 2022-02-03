@@ -67,6 +67,7 @@ const Signup = () => {
       .post("/signup", { name, email, address, password })
       .then((response) => {
         console.log(response.data);
+        history.push("/login")
       })
       .catch((err) => {
         console.log(err);
@@ -259,7 +260,7 @@ const Signup = () => {
                 ></ButtonComponent>
                 </ButtonSignUpSize>
             </ButtonSignUp>
-            <ButtonSignIn type="submit" onClick={() => history.push("/")}>
+            <ButtonSignIn type="submit" onClick={() => history.push("/login")}>
               Entrar
             </ButtonSignIn>
           </Form>
