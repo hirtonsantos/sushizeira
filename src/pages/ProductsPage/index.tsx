@@ -51,7 +51,7 @@ export const ProductsPage = () => {
         <Box> <h2> Nome </h2> </Box>
         <Box> <h2> QTD </h2> </Box>
         <Box> <h2> Preço </h2> </Box>
-        <Box> <h2> Ações </h2> </Box>
+        <Box> <h2> Ações  </h2> </Box>
       </DataContent>
 
       <RegisterContent>
