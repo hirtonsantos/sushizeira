@@ -58,7 +58,6 @@ export const OwnerProvider = ({ children }: OwnerProvidersProps) => {
 
   console.log(request)
 
-  // orders?userId${user.id}
   const history = useHistory()
 
   useEffect(()=>{
@@ -77,12 +76,13 @@ export const OwnerProvider = ({ children }: OwnerProvidersProps) => {
   const isfinishedRequests = () => {
     let result = 0
     for(let i = 0; i < request.length; i++){
-      if(request[i].status === "finished"){
+      if(request[i].status === "Finalizado"){
         result++
       }
     }
     return result
   } 
+
 
   const showIsOn = () => {
     setIsShow(!isShow)
