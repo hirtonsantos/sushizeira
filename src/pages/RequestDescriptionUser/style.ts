@@ -10,6 +10,11 @@ export const ContainerA = styled.div`
     @media(max-width: 810px){
       flex-direction: column-reverse;
     }
+    h1 {
+      font-size: 25px;
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
 `;
 
 export const HeaderContainer = styled.div`
@@ -56,7 +61,7 @@ export const IconsH = styled.div`
 export const Title = styled.div`
   text-align:center;
   font-size: 30px;
-  margin: 10px 0px;
+  margin: 40px 0px 30px 0px;
 `;
 
 export const ContainerBody = styled.div`
@@ -90,14 +95,14 @@ export const DetailsOrder = styled.div`
     padding: 20px;
     border-radius: 5px;
     box-sizing: border-box;
-    margin: 20px 0px 0px 0px;
+    margin: 0px;
     width: 100%;
     span, label{
       font-family: Ubuntu;
       font-style: normal;
       font-weight: normal;
       font-size: 20px;
-      line-height: 28px;
+      line-height: 24px;
       color: black;
     }
     .title{
@@ -113,7 +118,7 @@ export const DetailsOrder = styled.div`
       word-break: break-all;
     }
     .space{
-      margin-bottom:20px ;
+      margin-bottom:10px;
     }
     button{
       background: #4CDE18;
@@ -133,9 +138,10 @@ export const DetailsOrder = styled.div`
         img{
           user-select: auto;
           border-radius: 60px;
-          width: 95px;
-          height: 95px;
+          width: 75px;
+          height: 75px;
           object-fit:cover;
+          margin-right: 10px;
         }
         div{          
             width: 100%;

@@ -11,7 +11,7 @@ export const Conteiner = styled.div`
         font-family: 'Rock Salt';
         font-size: 25px;
         padding-top: 40px;
-        padding-bottom: 40px;
+        padding-bottom: 30px;
     }
     button {
         background: #2ACA2A;
@@ -20,6 +20,7 @@ export const Conteiner = styled.div`
         border: 0px;
         font-weight: bold;
         width: 140px;
-        height: 28px;
+        height: 30px;
+        margin-bottom: 15px;
     }
 `
