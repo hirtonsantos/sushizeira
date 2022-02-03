@@ -16,8 +16,9 @@ export const Route = ({
   isPrivate = false,
   component: Component,
   ...rest
+
 }: Props) => {
-  const { accessToken } = useAuth();
+  const { accessToken, user } = useAuth();
 
   return (
     <ReactRoute
@@ -26,7 +27,10 @@ export const Route = ({
         isPrivate === !!accessToken ? (
           <Component />
         ) : (
-          <Redirect to={isPrivate ? "/" : "/dashboard"} />
+          user.admin ?
+          <Redirect to={isPrivate ? "/" : "/requestPage"} />
+          :
+          <Redirect to={isPrivate ? "/" : "/menu"} />
         )
       }
     />
