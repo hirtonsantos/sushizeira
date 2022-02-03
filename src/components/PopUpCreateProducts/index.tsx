@@ -52,6 +52,7 @@ function PopUpCreateProduct({setPopup}: PopUpProps) {
     }else if(data.category === "Bebidas"){
       data.category = "bebida"
     }
+    data = {...data} 
     data.price = Number(data.price.toString().replaceAll(",", "."))
     createProduct({...data})
   };
