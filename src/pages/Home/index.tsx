@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import Logo from "../../assets/logo.png";
+import Logo from "../../assets/logo.png"; 
 import { ModalHome } from "../../components/ModalHome";
 import { useRequest } from "../../context/Request/RequestContext";
 import { Container, Info, Header, Rating } from "./style";

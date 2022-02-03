@@ -259,7 +259,7 @@ const Signup = () => {
                 ></ButtonComponent>
                 </ButtonSignUpSize>
             </ButtonSignUp>
-            <ButtonSignIn type="submit" onClick={() => history.push("/")}>
+            <ButtonSignIn type="submit" onClick={() => history.push("/login")}>
               Entrar
             </ButtonSignIn>
           </Form>
