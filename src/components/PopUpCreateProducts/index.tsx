@@ -49,7 +49,7 @@ function PopUpCreateProduct({setPopup}: PopUpProps) {
       data.category = "temaki"
     }else if(data.category === "Combinados"){
       data.category = "combinados"
-    }else if(data.category === "Bebidas"){
+    }else if(data.category === "Bebida"){
       data.category = "bebida"
     }
     data = {...data} 
