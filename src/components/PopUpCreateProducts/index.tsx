@@ -56,6 +56,7 @@ function PopUpCreateProduct({setPopup}: PopUpProps) {
     data = {...data} 
     data.price = Number(data.price.toString().replaceAll(",", "."))
     createProduct({...data})
+    setPopup(false)
   };
 
   const closePopUp = () => {

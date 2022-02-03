@@ -117,6 +117,10 @@ export const BoxContent = styled.div`
     button:hover{
         cursor: pointer;
     }
+    .btn-add{
+        padding: 5px;
+    }
+    margin-bottom: 15px;
    
 `
 
