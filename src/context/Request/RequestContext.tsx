@@ -113,6 +113,7 @@ export const RequestProvider = ({ children }: RequestProvidersProps) => {
       },
     })
     .then((response) => {
+      toast.success("Obrigada pelo feedback!")
       setRating([...rating, response.data])
     })
     .catch((err) => {

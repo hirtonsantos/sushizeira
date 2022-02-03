@@ -52,7 +52,7 @@ export const ProductsPage = () => {
       <ProductsConteiner ishow={isShow}>
         <BoxContent>
           <h1> Produtos </h1>
-          <button onClick={() => openPopUp()}> Adicionar produto </button>
+          <button className="btn-add" onClick={() => openPopUp()}> Adicionar produto </button>
         </BoxContent>
         <DataContent>
           <Box>

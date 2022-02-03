@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, ReactNode, useEffect } from "react";
+import toast from "react-hot-toast";
 import { api } from "../../services/api";
 import { useAuth } from "../Auth/AuthContext";
 
@@ -62,6 +63,7 @@ export const ProductProvider = ({ children }: ProductProvidersProps) => {
       },
     })
     .then((response) => {
+      toast.success("Produto criado com sucesso!")
       setRefresh(!refresh)
     })
     .catch((err) => console.log(err)) 
@@ -74,7 +76,9 @@ export const ProductProvider = ({ children }: ProductProvidersProps) => {
         Authorization: `Bearer ${accessToken}`,
       },
     })
-    .then((_) => setRefresh(!refresh))
+    .then((_) => {
+      toast.success("Produto removido com sucesso!")
+      setRefresh(!refresh)})
   };
   
 
