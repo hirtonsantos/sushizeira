@@ -17,8 +17,10 @@ export const Home = () => {
   };
   const previewReview = () => {
     if(index === 0){
+      
       setIndex(rating.length-1)
     }
+
     setIndex(index - 1);
   };
   
