@@ -45,7 +45,7 @@ interface Rating{
   stars?: number;
   review?: string;
   idRequest?: string
-  nameUser: string;
+  nameUser?: string;
 }
 
 
