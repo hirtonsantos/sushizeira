@@ -45,13 +45,15 @@ function CardRequest({request}: CardRequestProps) {
 
     function changeColor(){
         if(request.status === "Aguardando aceitação"){
-            return "#4CDE18"
+            return "#27d8c0"
         }else if(request.status === "Em preparo"){
             return "blue"
         }else if(request.status === "Em transporte"){
             return "#10E8DB"
+        }else if(request.status === "Finalizado"){
+            return "#ff0000"
         }
-        return "red"
+        return "#003879"
     }
         
     return(

@@ -126,9 +126,11 @@ export const RequestsPage = () => {
               sx={{background: "white",}}
             >
               <option value={"Aguardando aceitação"}>Aguardando aceitação</option>
+              <option value={"Cancelado"}>Cancelado</option>
               <option value={"Em preparo"}>Em preparo</option>
               <option value={"Em transporte"}>Em transporte</option>
               <option value={"Finalizado"}>Finalizado</option>
+
             </NativeSelect>
           </Box>
         </BoxConteiner>

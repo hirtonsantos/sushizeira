@@ -189,6 +189,10 @@ function User() {
             </Form>
           </FormBox>
         }
+        {
+          request.find((item) => item.id === id)?.status === "Cancelado" &&
+          <div className='div-info-cancel'>Seu pedido foi cancelado</div>
+        }
       </Page>
     </Container>
   )

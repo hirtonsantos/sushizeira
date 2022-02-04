@@ -38,6 +38,7 @@ export const Status = styled.div`
     width: 10px;
     height: 10px;
     animation: ${Pop} 1s infinite;
+    animation-direction: reverse;
     border-radius: 100%;
     margin-left: 10px;
 `;
