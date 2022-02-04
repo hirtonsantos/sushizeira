@@ -10,6 +10,8 @@ export const RequestConteiner = styled.div<SelectBoxProps>`
     flex-direction: column;
     width: 100%;
     align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
 `
 
 export const SelectBox = styled.div<SelectBoxProps>`
@@ -60,10 +62,12 @@ export const Box = styled.div`
 export const BoxInfo = styled.div`
     display: flex;
     padding-bottom: 40px;
-    width: 80%;
-    justify-content: space-around;
+    width: 100%;
+    justify-content: center;
     flex-direction: column;
-    @media(min-width: 514px){
+    align-items:center;
+    @media(min-width: 933px){
+        width: 80%;
         flex-direction: row;
     }
 `
@@ -92,7 +96,7 @@ export const ContentSearch = styled.div`
         height: 18px;
         top: 2px;
     }
-    @media(min-width: 514px){
+    @media(min-width: 933px){
         width: 30%;
         label{
             font-family: sans-serif;
@@ -106,6 +110,7 @@ export const ContentStatics = styled.div`
     width: 100%;
     justify-content: space-evenly;
     display: flex;
+    flex-wrap:wrap;
 `
 
 export const BoxStatics = styled.div`
@@ -124,10 +129,12 @@ export const BoxStatics = styled.div`
     height: 50px;
     width: 80px;
     align-items: center;
+    margin-bottom: 10px;
+    padding: 6px;
     span{
         font-size: 15px;
     }
-    @media(min-width: 514px){
+    @media(min-width: 933px){
         background: black;
         color: white;
         font-size: 23px;
@@ -149,13 +156,14 @@ export const DataContent = styled.div`
     color: black;
     border-radius: 1px;
     font-weight: bold;
-    @media(min-width: 514px){
+    @media(min-width: 933px){
         background: black;
         color: white;
     }
-    @media(max-width: 514px){
-        ${Box}:first-child {
+    @media(max-width: 933px){
+        .none{
             display: none;
+        }
     }
 `
 
@@ -165,7 +173,7 @@ export const RegisterContent = styled.div`
     margin-top: 20px;
     width: 80%;
     font-weight: bold;
-    @media(min-width: 514px){
+    @media(min-width: 933px){
         margin: 0px;
     }
 `
@@ -181,14 +189,16 @@ export const BoxConteiner = styled.div`
     color: black;
     border-radius: 3px;
     margin-top: 5px;
-    @media(min-width: 514px){
+    @media(min-width: 933px){
         margin: 0px;
         background: black;
         color: white;
     }
-    @media(max-width: 514px){
-        ${Box}:first-child {
+    @media(max-width: 933px){
+        .none{
             display: none;
+        }
+            
     }
 `
 export const BoxNotRequest = styled.div<SelectBoxProps> `
