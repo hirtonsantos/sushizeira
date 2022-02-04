@@ -96,7 +96,6 @@ export const RequestProvider = ({ children }: RequestProvidersProps) => {
       },
     })
     .then((response) => {
-      console.log(response.data)
         setRequest([...request])
         setRefresh(!refresh)
     })
