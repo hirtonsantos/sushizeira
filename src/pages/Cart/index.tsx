@@ -10,7 +10,7 @@ import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mu
 import { FaSignOutAlt } from "react-icons/fa";
 import { Link, useHistory } from "react-router-dom";
 import { useRequest } from "../../context/Request/RequestContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -23,10 +23,11 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 function Cart({}) {
     const {user, signOut} = useAuth();
-    const {cart, deleteAll} = useCart();
+    const {cart, deleteAll, getCart} = useCart();
     const {finishRequest} = useRequest();
     const [payment, setPayment] = useState("Dinheiro");
     const history = useHistory();
+    const [refresh, setRefresh] = useState(false)
 
     const valorTotalCarrinho = cart.reduce(function (acumulador, valorAtual) {
         return acumulador + (valorAtual.quantidade*Number(valorAtual.price));
@@ -36,6 +37,10 @@ function Cart({}) {
         finishRequest(cart, valorTotalCarrinho, payment)
         deleteAll()
     }
+
+    useEffect(()=>{
+        getCart();
+    }, [refresh])
 
     return(
         <Container>
@@ -47,7 +52,7 @@ function Cart({}) {
                     <Link to={"/request"}>Meus Pedidos</Link>
                 </MyOrder>
                 <IconsH>
-                    <StyledBadge badgeContent={cart.length} color="secondary">
+                    <StyledBadge badgeContent={cart.filter((item)=>Number(item.userId) == Number(user.id)).length} color="secondary">
                         <GiShoppingCart onClick={() => history.push("/cart")}/>
                     </StyledBadge>
                     <FaSignOutAlt onClick={signOut}/>
@@ -64,7 +69,7 @@ function Cart({}) {
                     <GiShoppingCart/>
                 </CardHeader>
                 <CardProducts>
-                   {
+                   {   cart &&
                        cart.length > 0 ? 
                         cart.map((itemCart)=>(
                             <CardProductCart key={itemCart.id} product={itemCart}/>

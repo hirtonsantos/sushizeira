@@ -25,7 +25,6 @@ function RequestUser() {
     const {cart} = useCart();
     const {requestUser, getRequest, request} = useRequest();
     const history = useHistory();
-    console.log(requestUser)
     return(
         <Container>
             <HeaderContainer>
@@ -38,7 +37,7 @@ function RequestUser() {
                         </MyOrder>
                     
                         <IconsH>
-                            <StyledBadge badgeContent={cart.length} color="secondary">
+                            <StyledBadge badgeContent={cart.filter((item)=>Number(item.userId) == Number(user.id)).length} color="secondary">
                                 <GiShoppingCart onClick={() => history.push("/cart")}/>
                             </StyledBadge>
                             <FaSignOutAlt onClick={signOut}/>

@@ -70,7 +70,7 @@ function Menu() {
                 </MyOrder>
              
                 <IconsH>
-                    <StyledBadge badgeContent={cart.length} color="secondary">
+                    <StyledBadge badgeContent={cart.filter((item)=>Number(item.userId) == Number(user.id)).length} color="secondary">
                         <GiShoppingCart onClick={() => history.push("/cart")}/>
                     </StyledBadge>
                     <FaSignOutAlt onClick={signOut}/>

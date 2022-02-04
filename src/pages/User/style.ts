@@ -135,8 +135,13 @@ export const Page = styled.div`
   display: flex;
   justify-content: center;
   flex-flow: column wrap;
+  margin-top: 20px;
   @media (min-width: 830px) {
     flex-flow: row nowrap;
+  }
+  .div-info-cancel{
+    margin-left: 20px;
+    margin-top: 20px;
   }
 `
 
